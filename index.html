@@ -1,16 +1,418 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="theme-color" content="rgb(32,32,32)">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, shrink-to-fit=no">
-		<title>My first three.js app</title>
-		<style>
-			body { margin: 0; padding: 0; background: #000; width:auto; box-sizing:border-box; display:flex; overflow: hidden; }
-			canvas { margin: 0; padding: 0; background: #000; width:auto; overflow: hidden;}
-		</style>
-		<script type="module" crossorigin src="/assets/index-DpeAp94Z.js"></script>
-	</head>
-	<body>
-	</body>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCP Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #FF8632;
+            --main-width: 800px;
+            --neon-glow: 0 0 10px var(--main-color), 0 0 20px var(--main-color), 0 0 40px var(--main-color);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Press Start 2P', cursive;
+            color: var(--main-color);
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 1rem;
+            margin: 1rem 0;
+        }
+
+        .crt-screen {
+            width: 100%;
+            max-width: var(--main-width);
+            padding: 1rem;
+            border: 2px solid var(--main-color);
+            background: #000608;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crt-screen::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, transparent, #120048 95%);
+            opacity: 0.1;
+            pointer-events: none;
+            transition: opacity 0.8s;
+        }
+
+        .crt-screen:active::after {
+            opacity: 0.4;
+        }
+
+        .noise {
+            position: absolute;
+            inset: 0;
+            background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAXElEQVQ4T2NkYGD4z4ADmJiYGLAgCxKjEF0hukJ0hegK0RUCAF4pB1kH2zqJAAAAAElFTkSuQmCC");
+            opacity: 0.4;
+            pointer-events: none;
+            animation: screennoise 0.5s steps(10) infinite;
+        }
+
+        @keyframes screennoise {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+
+        .scanlines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(to bottom, rgba(255, 25, 55, 0.2) 0%, rgba(255, 80, 25, 0.1) 1px, transparent 1px, transparent 2px);
+            animation: scanline 6s linear infinite, flicker 0.5s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
+        }
+
+        pre {
+            font-family: inherit;
+            font-size: 12px;
+            line-height: 2.2;
+            white-space: pre-wrap;
+            animation: charAppear 0.2s ease-in-out;
+            overflow-y: auto;
+            max-height: 640px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--main-color) transparent;
+        }
+
+        pre::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        pre::-webkit-scrollbar-thumb {
+            background-color: var(--main-color);
+            border-radius: 4px;
+        }
+
+        pre::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        @keyframes charAppear {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 12px;
+            background: var(--main-color);
+            animation: blink 0.75s step-end infinite;
+            box-shadow: var(--neon-glow);
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        #keyboard {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: var(--main-width);
+            padding: 8px;
+            z-index: 10;
+        }
+
+        #keyboard input {
+            width: 100%;
+            background: transparent;
+            border: 2px dashed var(--main-color);
+            padding: 12px;
+            text-align: center;
+            font-family: inherit;
+            font-size: 12px;
+            color: var(--main-color);
+            outline: none;
+            text-transform: uppercase;
+            box-shadow: var(--neon-glow);
+        }
+
+        input::placeholder {
+            color: var(--main-color);
+            opacity: 1;
+            animation: blink-placeholder 1s infinite;
+        }
+
+        @keyframes blink-placeholder {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hidecaret {
+            caret-color: transparent;
+        }
+
+        #reboot-button {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            padding: 6px 12px;
+            background: #000;
+            border: 2px solid var(--main-color);
+            font-family: inherit;
+            font-size: 12px;
+            color: var(--main-color);
+            cursor: pointer;
+            z-index: 2;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        #reboot-button:hover {
+            background: var(--main-color);
+            color: #1a1a1a;
+        }
+
+        @keyframes screen-on {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .screen-on {
+            animation: screen-on 1s ease-out;
+        }
+
+        .sensor {
+            position: fixed;
+            top: 12px;
+            width: 12px;
+            height: 10px;
+            background: var(--main-color);
+            animation: sensor-flicker 3s infinite;
+            box-shadow: var(--neon-glow);
+        }
+
+        @keyframes sensor-flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="boot-screen" class="crt-screen">
+        <pre id="boot-text">***
+ПОРТФОЛИО V1.6
+***
+
+ПРОВЕРКА ЯДРА: OK
+ПРОВЕРКА ПАМЯТИ: 64K OK
+
+...</pre>
+        <div class="scanlines"></div>
+        <div class="noise"></div>
+    </div>
+
+    <div id="portfolio" class="crt-screen hidden">
+        <div class="info">
+            <h1>3D World</h1>
+        </div>
+        <pre id="portfolio-text"></pre>
+        <span class="cursor"></span>
+        <div class="scanlines"></div>
+        <div class="noise"></div>
+    </div>
+
+    <div id="keyboard" class="crt-screen hidden">
+        <input type="text" class="hidecaret" placeholder="ВВЕДИТЕ КОМАНДУ">
+        <div class="scanlines"></div>
+        <div class="noise"></div>
+    </div>
+
+    <button id="reboot-button">ПЕРЕЗАПУСК</button>
+    <audio id="boot-sound" src="./sounds/boot.mp3" preload="auto"></audio>
+    <audio id="type-sound" src="./sounds/type.mp3" preload="auto"></audio>
+
+    <div class="sensor" style="left: 12px;"></div>
+    <div class="sensor" style="left: 30px;"></div>
+    <div class="sensor" style="left: 48px;"></div>
+
+    <script>
+        class Terminal {
+            static CONFIG = {
+                TYPING_SPEED: 10,
+                SOUND_VOLUME: 0.2,
+                REBOOT_DELAY: 3000,
+                INITIAL_DELAY: 2000
+            };
+
+            static PORTFOLIO_DATA = {
+                mainText: `
+***
+ПОРТФОЛИО V1.6
+***
+
+> ИНФОРМАЦИЯ
+ДАТА РОЖДЕНИЯ: 26.12.1989
+ИМЯ: Власов Алексей
+НИК: crwde
+ДОЛЖНОСТЬ: 3D Художник
+
+> МОИ ПРОЕКТЫ (ВВЕДИТЕ 'ПРОЕКТ1' ИЛИ 'ПРОЕКТ2')
+1. XCOM 2024 - [Короткое описание]
+2. DOT - [Короткое описание]
+
+> НАВЫКИ
+- ПРОГРАММЫ: [3D Art, Maya, Blender, Zbrush, Neural Networks, Python, JS]
+- СРЕДСТВА КОНТРОЛЯ: [SourceTree, Git, Jira]
+
+> КОНТАКТЫ
+E-MAIL: grimufa@gmail.com
+ТВИТТЕР: @crwdex
+
+> ДОСТУПНЫЕ КОМАНДЫ:
+НАЗАД, ВЫХОД`
+            };
+
+            constructor() {
+                this.elements = {
+                    boot: document.getElementById('boot-screen'),
+                    bootText: document.getElementById('boot-text'),
+                    portfolio: document.getElementById('portfolio'),
+                    portfolioText: document.getElementById('portfolio-text'),
+                    keyboard: document.getElementById('keyboard'),
+                    input: document.querySelector('#keyboard input'),
+                    rebootBtn: document.getElementById('reboot-button'),
+                    bootSound: document.getElementById('boot-sound'),
+                    typeSound: document.getElementById('type-sound')
+                };
+
+                this.isTyping = false;
+                this.initEventListeners();
+                this.initialize();
+            }
+
+            initEventListeners() {
+                document.addEventListener('keydown', (e) => {
+                    if (/^[a-zA-Zа-яА-Я]$/.test(e.key) && !this.elements.keyboard.classList.contains('hidden')) {
+                        this.elements.input.focus();
+                    }
+                });
+
+                this.elements.input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !this.isTyping) {
+                        this.handleCommand(e.target.value.toUpperCase().trim());
+                        e.target.value = '';
+                    } else if (e.key === 'Enter') {
+                        e.preventDefault();
+                    }
+                });
+
+                this.elements.rebootBtn.addEventListener('click', () => this.reboot());
+            }
+
+            playSound(soundElement, volume = Terminal.CONFIG.SOUND_VOLUME) {
+                soundElement.volume = volume;
+                soundElement.currentTime = 0;
+                return soundElement.play().catch(error => console.error('Audio playback error:', error));
+            }
+
+            async typeText(text, element, speed = Terminal.CONFIG.TYPING_SPEED) {
+                this.isTyping = true;
+                element.textContent = '';
+                for (let i = 0; i < text.length; i++) {
+                    element.textContent += text[i];
+                    this.playSound(this.elements.typeSound, 0.1);
+                    element.scrollTop = element.scrollHeight;
+                    await new Promise(resolve => setTimeout(resolve, speed));
+                }
+                this.isTyping = false;
+            }
+
+            async reboot() {
+                this.elements.input.value = '';
+                await this.playSound(this.elements.bootSound);
+                this.elements.portfolio.classList.add('hidden');
+                this.elements.boot.classList.remove('hidden');
+                this.elements.keyboard.classList.add('hidden');
+                this.elements.bootText.textContent = '*** СИСТЕМА ПЕРЕЗАГРУЖАЕТСЯ ***\nПОЖАЛУЙСТА ПОДОЖДИТЕ ...';
+
+                await new Promise(resolve => setTimeout(resolve, Terminal.CONFIG.REBOOT_DELAY));
+                await this.playSound(this.elements.bootSound);
+                this.elements.bootText.textContent = '*** СИСТЕМА ЗАПУЩЕНА ***\nВВЕДИТЕ \'СТАРТ\' ЧТОБЫ НАЧАТЬ';
+                this.elements.keyboard.classList.remove('hidden');
+            }
+
+            async initialize() {
+                this.elements.boot.classList.add('screen-on');
+                this.elements.keyboard.classList.add('hidden');
+
+                await new Promise(resolve => setTimeout(resolve, Terminal.CONFIG.INITIAL_DELAY));
+                await this.playSound(this.elements.bootSound);
+                this.elements.boot.classList.add('hidden');
+                this.elements.portfolio.classList.remove('hidden');
+                this.elements.keyboard.classList.remove('hidden');
+                await this.typeText(Terminal.PORTFOLIO_DATA.mainText, this.elements.portfolioText);
+            }
+
+            async handleCommand(command) {
+                switch (command) {
+                    case 'ВЫХОД':
+                        await this.typeText('ПРОИЗВОДИТСЯ ВЫКЛЮЧЕНИЕ СИСТЕМЫ...\n', this.elements.portfolioText, 20);
+                        await new Promise(resolve => setTimeout(resolve, 500));
+                        this.elements.portfolio.classList.add('hidden');
+                        this.elements.boot.classList.remove('hidden');
+                        this.elements.bootText.textContent = '*** РАБОТА ПРЕКРАЩЕНА ***\nВВЕДИТЕ \'СТАРТ\' ЧТОБЫ ЗАПУСТИТЬ КОМПЬЮТЕР\n';
+                        break;
+
+                    case 'СТАРТ':
+                        if (!this.elements.boot.classList.contains('hidden')) {
+                            await this.initialize();
+                        }
+                        break;
+
+                    case 'ПОРТФОЛИО':
+                        window.location.href = 'portfolio.html';
+                        break;
+
+                    case 'НАЗАД':
+                        this.elements.portfolio.classList.add('flicker');
+                        await this.typeText(Terminal.PORTFOLIO_DATA.mainText, this.elements.portfolioText, 20);
+                        this.elements.portfolio.classList.remove('flicker');
+                        break;
+
+                    default:
+                        this.elements.portfolio.classList.add('flicker');
+                        await this.typeText(`ОШИБКА ВВОДА: ${command}\n> ВВЕДИТЕ 'НАЗАД' чтобы вернуться на главный экран\n`, this.elements.portfolioText, 20);
+                        this.elements.portfolio.classList.remove('flicker');
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => new Terminal());
+    </script>
+</body>
 </html>
