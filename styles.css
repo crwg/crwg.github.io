@@ -62,9 +62,9 @@ margin:4rem;
 }
 
 @keyframes spin {
-25% { transform: rotate(3deg); }
-50% { transform: scale(0.95); }
-75% { transform: rotate(-3deg); }
+25% { transform: rotate(1deg); }
+50% { transform: scale(0.98); }
+75% { transform: rotate(-1deg); }
 }
 
 
