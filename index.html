@@ -1,427 +1,151 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OCP Terminal</title>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
-<style>
-:root {
---main-color: #FF4136;
---background-color: #0A0A0A;
---radial-tap-color: rgba(255, 65, 54, 0.15);
-
---main-width: 768px;
---neon-glow: 0 0 10px var(--main-color);
-}
-
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-
-body {
-background: #000;
-min-height: 80vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-font-family: "Fira Code", monospace;
-font-size: 14px;
-color: var(--main-color);
-overflow: hidden;
-}
-
-h1 {
-font-size: 1rem;
-margin: 1rem 0;
-}
-
-.crt-screen {
-width: 100%;
-max-width: var(--main-width);
-padding: 1rem;
-border: 2px solid var(--main-color);
-background: var(--background-color);
-position: relative;
-overflow: hidden;
-}
-
-.crt-screen::after {
-content: '';
-position: absolute;
-inset: 0;
-background: radial-gradient(circle, transparent, var(--radial-tap-color) 75%);
-opacity: 0.25;
-pointer-events: none;
-}
-
-.crt-screen:active::after {
-opacity: 0.5;
-}
-
-.noise {
-position: absolute;
-inset: 0;
-background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAJElEQVQImWM4c+bMfwYGBgYGBgYGBgYGZmZmZmZmZmZmZmYGAP///6VZgW4AAAAASUVORK5CYII=') repeat;
-opacity: 0.1;
-pointer-events: none;
-animation: screennoise 4s linear infinite;
-}
-
-@keyframes screennoise {
-50% { opacity: 0.075; }
-}
-
-.scanlines {
-position: absolute;
-inset: 0;
-background: repeating-linear-gradient(to top,
-
-rgba(255, 55, 0, 0.08) 0%,
-rgba(255, 35, 20, 0.04) 32px 100%
-);
-animation: scanline 10s linear infinite, flicker 2s infinite;
-pointer-events: none;
-}
-
-@keyframes scanline {
-0% { transform: translateY(-100%); }
-100% { transform: translateY(100%); }
-}
-
-@keyframes flicker {
-50% { opacity: 0.75; }
-}
-
-pre {
-font-family: inherit;
-font-size: 12px;
-line-height: 2.2;
-white-space: pre-wrap;
-overflow-y: auto;
-max-height: 640px;
-scrollbar-width: thin;
-scrollbar-color: var(--main-color) transparent;
-}
-
-pre::-webkit-scrollbar {
-width: 8px;
-}
-
-pre::-webkit-scrollbar-thumb {
-background-color: var(--main-color);
-border-radius: 4px;
-}
-
-pre::-webkit-scrollbar-track {
-background: transparent;
-}
-
-.hidden {
-display: none;
-}
-
-.cursor {
-display: inline-block;
-width: 10px;
-height: 12px;
-background: var(--main-color);
-animation: blink 0.75s step-end infinite;
-box-shadow: var(--neon-glow);
-vertical-align: middle;
-}
-
-@keyframes blink {
-50% { opacity: 0; }
-}
-
-#keyboard {
-position: fixed;
-bottom: 0;
-width: 100%;
-max-width: var(--main-width);
-padding: 8px;
-z-index: 10;
-}
-
-#keyboard input {
-width: 100%;
-background: transparent;
-border: 2px solid var(--main-color);
-padding: 6px;
-text-align: center;
-font-family: inherit;
-font-size: 12px;
-color: var(--main-color);
-outline: none;
-text-transform: uppercase;
-box-shadow: var(--neon-glow);
-opacity: 1;
-border-radius: 6px;
-animation: blink-placeholder 1s infinite;
-}
-
-input::placeholder {
-color: var(--main-color);
-opacity: 1;
-animation: blink-placeholder 1s infinite;
-}
-
-@keyframes blink-placeholder {
-  50% {opacity: 0;}
-}
-
-.hidecaret {
-caret-color: transparent;
-}
-
-#reboot-button {
-position: fixed;
-top: 12px;
-right: 12px;
-padding: 6px 12px;
-background: #000;
-border: 2px solid var(--main-color);
-font-family: inherit;
-font-size: 12px;
-color: var(--main-color);
-cursor: pointer;
-z-index: 2;
-transition: background 0.3s, color 0.3s;
-}
-
-#reboot-button:hover {
-background: var(--main-color);
-color: #1a1a1a;
-}
-
-@keyframes screen-on {
-0% { opacity: 0; transform: scale(0.5); }
-100% { opacity: 1; transform: scale(1); }
-}
-
-.screen-on {
-animation: screen-on 1s ease-out;
-}
-
-.sensor {
-position: fixed;
-top: 12px;
-width: 12px;
-height: 10px;
-background: var(--main-color);
-animation: sensor-flicker 3s infinite;
-box-shadow: var(--neon-glow);
-}
-
-@keyframes sensor-flicker {
-0%, 100% { opacity: 1; }
-50% { opacity: 0; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematic Terminal</title>
+	<link type="text/css" rel="stylesheet" href="styles.css" media="all" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div id="boot-screen" class="crt-screen">
-<pre id="boot-text">***
-ПОРТФОЛИО V1.6
-***
+    <!-- Фоновые звёзды -->
+    <div class="stars" id="stars"></div>
 
-ПРОВЕРКА ЯДРА: OK
-ПРОВЕРКА ПАМЯТИ: 64K OK
+    <!-- Логотип и терминал -->
+    <img src="logo.png" alt="Logo" class="logo">
+    <div class="crt-screen" id="portfolio">
+	    <h1>ПОСЛЕДОВАТЕЛЬНОСТЬ ЗАПУСКА СИСТЕМЫ:</h1>
+        <div class="scanlines"></div>
+        <div class="noise"></div>
+    </div>
 
-...</pre>
-<div class="scanlines"></div>
-<div class="noise"></div>
-</div>
+    <script>
+        // Модуль для создания звёзд
+        const createStars = (container, count = 100) => {
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                container.appendChild(star);
+            }
+        };
 
-<div id="portfolio" class="crt-screen hidden">
-<div class="info">
-<h1>ПОРТФОЛИО V1.6</h1>
-</div>
-<pre id="portfolio-text"></pre>
-<span class="cursor"></span>
-<div class="scanlines"></div>
-<div class="noise"></div>
-</div>
+        // Модуль для печати текста с эффектом перебора символов
+        const typeText = async (element, text, speed = 50) => {
+            return new Promise((resolve) => {
+                const randomChars = "!@#$%^&*()_+-=[]{}|;:,.<>?~`";
+                let currentText = '';
+                let charIndex = 0;
 
-<div id="keyboard" class="crt-screen hidden">
-<input type="text" class="hidecaret" placeholder="ВВЕДИТЕ КОМАНДУ">
-<div class="scanlines"></div>
-<div class="noise"></div>
-</div>
+                const interval = setInterval(() => {
+                    if (charIndex < text.length) {
+                        // Добавляем случайные символы для эффекта "набора"
+                        let tempText = currentText;
+                        tempText += text[charIndex]; // Добавляем следующий символ из строки
+                        for (let i = charIndex + 1; i < text.length; i++) {
+                            tempText += randomChars[Math.floor(Math.random() * randomChars.length)];
+                        }
+                        element.textContent = tempText;
+                        currentText += text[charIndex]; // Сохраняем текущий символ
+                        charIndex++;
+                    } else {
+                        clearInterval(interval);
+                        resolve();
+                    }
+                }, speed);
+            });
+        };
 
-<button id="reboot-button">ПЕРЕЗАПУСК</button>
-<audio id="boot-sound" src="./sounds/boot.mp3" preload="auto"></audio>
-<audio id="type-sound" src="./sounds/type.mp3" preload="auto"></audio>
+        // Модуль для плавного появления
+        const fadeIn = (element, duration = 500) => {
+            return new Promise((resolve) => {
+                element.style.opacity = 0;
+                let start = null;
 
-<div class="sensor" style="left: 12px;"></div>
-<div class="sensor" style="left: 30px;"></div>
-<div class="sensor" style="left: 48px;"></div>
+                const step = (timestamp) => {
+                    if (!start) start = timestamp;
+                    const progress = timestamp - start;
+                    element.style.opacity = Math.min(progress / duration, 1);
+                    if (progress < duration) {
+                        requestAnimationFrame(step);
+                    } else {
+                        resolve();
+                    }
+                };
+                requestAnimationFrame(step);
+            });
+        };
 
-<script>
-class Terminal {
-static CONFIG = {
-TYPING_SPEED: 10,
-SOUND_VOLUME: 0.1,
-REBOOT_DELAY: 3000,
-INITIAL_DELAY: 2000
-};
+        // Модуль для плавного исчезновения
+        const fadeOut = (element, duration = 500) => {
+            return new Promise((resolve) => {
+                let start = null;
 
-static PORTFOLIO_DATA = {
-mainText: `
-Вейланд-Ютани: Секция закрытых экспериментов 
+                const step = (timestamp) => {
+                    if (!start) start = timestamp;
+                    const progress = timestamp - start;
+                    element.style.opacity = Math.max(1 - progress / duration, 0);
+                    if (progress < duration) {
+                        requestAnimationFrame(step);
+                    } else {
+                        element.style.display = 'none';
+                        resolve();
+                    }
+                };
+                requestAnimationFrame(step);
+            });
+        };
 
-> ДАННЫЕ ИЗ КРИОКАПСУЛЫ:
-ДАТА РОЖДЕНИЯ: 26.12.1989
-СУБЪЕКТ: Власов Алексей
-КОДОВОЕ ИМЯ: crwde
-СТАТУС: 3D Художник 
+        // Основная функция
+        const init = async () => {
+            const starsContainer = document.getElementById('stars');
+            const portfolio = document.getElementById('portfolio');
+            const logo = document.querySelector('.logo');
 
-> МОИ ПРОЕКТЫ:
-1. XCOM 2024 - [Разработал игру с нуля]
-2. DOT - [Написал свой язык]
+const lines = [
+    "> ПРОВЕРКА ОПЕРАТИВНОЙ ПАМЯТИ: [ОШИБКА - ДАННЫЕ ИСКАЖЕНЫ]",
+    "> ЗАГРУЗКА BIOS: 0xFF34... [ПРЕРВАНА - НЕИЗВЕСТНЫЙ СБОЙ]",
+    "> СКАНИРОВАНИЕ ОБОРУДОВАНИЯ: [СИГНАЛЫ ЖИЗНИ ОТСУТСТВУЮТ]",
+    "> ИНИЦИАЛИЗАЦИЯ ЯДРА: [ЗАГРЯЗНЕНИЕ СИСТЕМЫ ПОДТВЕРЖДЕНО]",
+    "> ПОИСК АНОМАЛИЙ: [ЧУЖЕРОДНЫЙ СЛЕД ОБНАРУЖЕН]",
+    "> ПРЕДУПРЕЖДЕНИЕ: НЕКОНТРОЛИРУЕМЫЕ КОЛЕБАНИЯ В ЭНЕРГОСЕТИ",
+    "> ПРОТОКОЛ 'КСЕНОС' АКТИВИРОВАН: [КАРАНТИН НАРУШЕН]",
+    "> СТАТУС: КОНТЕЙНМЕНТ ПРОВАЛЕН - ВСЕ СИСТЕМЫ КОМПРОМЕТИРОВАНЫ",
+    "> ПЕРЕДАЧА: 'МЫ НЕ ОДИНОКИ... ОНИ В СТЕНАХ...'",
+    "> ДОПОЛНИТЕЛЬНО: ТИШИНА - ЕДИНСТВЕННЫЙ ОТВЕТ СТАНЦИИ."
+];
 
-> ИНСТРУМЕНТЫ:
-- ПРОГРАММЫ: [3D Art, Maya, Blender, Zbrush, Neural Networks, Python, JS]
-- СРЕДСТВА КОНТРОЛЯ: [SourceTree, Git, Jira]
+            // Создаём звёзды
+            createStars(starsContainer, 150);
 
-> СВЯЗЬ:
-E-MAIL: grimufa@gmail.com
-ТВИТТЕР: @crwdex
+            // Плавное появление логотипа
+            if (logo) {
+                await fadeIn(logo, 1000);
+            }
 
-> ДИРЕКТИВЫ:
-НАЗАД | ВЫХОД 
+            // Печать текста
+            for (const line of lines) {
+                const lineElement = document.createElement('div');
+                lineElement.classList.add('portfolio-line');
+                portfolio.appendChild(lineElement);
+                await typeText(lineElement, line, 10); // Печать строки
+                await new Promise((resolve) => setTimeout(resolve, 100)); // Пауза между строками
+            }
 
-Примечание от Вейланд-Ютани: Сотрудник подозревается в создании цифровых ксеноморфов. Не открывайте его проекты без огнемёта и средств защиты класса D
+            // Плавное исчезновение логотипа и текста
+            if (logo) {
+                await fadeOut(logo, 1000);
+            }
+            await fadeOut(portfolio, 1000);
 
+            // Переход на portfolio.html
+            window.location.href = "portfolio.html";
+        };
 
-
-
-
-
-
-`
-};
-
-constructor() {
-this.elements = {
-boot: document.getElementById('boot-screen'),
-bootText: document.getElementById('boot-text'),
-portfolio: document.getElementById('portfolio'),
-portfolioText: document.getElementById('portfolio-text'),
-keyboard: document.getElementById('keyboard'),
-input: document.querySelector('#keyboard input'),
-rebootBtn: document.getElementById('reboot-button'),
-bootSound: document.getElementById('boot-sound'),
-typeSound: document.getElementById('type-sound')
-};
-
-this.isTyping = false;
-this.initEventListeners();
-this.initialize();
-}
-
-initEventListeners() {
-document.addEventListener('keydown', (e) => {
-if (/^[a-zA-Zа-яА-Я]$/.test(e.key) && !this.elements.keyboard.classList.contains('hidden')) {
-this.elements.input.focus();
-}
-});
-
-this.elements.input.addEventListener('keydown', (e) => {
-if (e.key === 'Enter' && !this.isTyping) {
-this.handleCommand(e.target.value.toUpperCase().trim());
-e.target.value = '';
-} else if (e.key === 'Enter') {
-e.preventDefault();
-}
-});
-
-this.elements.rebootBtn.addEventListener('click', () => this.reboot());
-}
-
-playSound(soundElement, volume = Terminal.CONFIG.SOUND_VOLUME) {
-soundElement.volume = volume;
-soundElement.currentTime = 0;
-return soundElement.play().catch(error => console.error('Audio playback error:', error));
-}
-
-async typeText(text, element, speed = Terminal.CONFIG.TYPING_SPEED) {
-this.isTyping = true;
-element.textContent = '';
-for (let i = 0; i < text.length; i++) {
-element.textContent += text[i];
-this.playSound(this.elements.typeSound, 0.1);
-element.scrollTop = element.scrollHeight;
-await new Promise(resolve => setTimeout(resolve, speed));
-}
-this.isTyping = false;
-}
-
-async reboot() {
-this.elements.input.value = '';
-await this.playSound(this.elements.bootSound);
-this.elements.portfolio.classList.add('hidden');
-this.elements.boot.classList.remove('hidden');
-this.elements.keyboard.classList.add('hidden');
-this.elements.bootText.textContent = '*** СИСТЕМА ПЕРЕЗАГРУЖАЕТСЯ ***\nПОЖАЛУЙСТА ПОДОЖДИТЕ ...';
-
-await new Promise(resolve => setTimeout(resolve, Terminal.CONFIG.REBOOT_DELAY));
-await this.playSound(this.elements.bootSound);
-this.elements.bootText.textContent = '*** СИСТЕМА ЗАПУЩЕНА ***\nВВЕДИТЕ \'СТАРТ\' ЧТОБЫ НАЧАТЬ';
-this.elements.keyboard.classList.remove('hidden');
-}
-
-async initialize() {
-this.elements.boot.classList.add('screen-on');
-this.elements.keyboard.classList.add('hidden');
-
-await new Promise(resolve => setTimeout(resolve, Terminal.CONFIG.INITIAL_DELAY));
-await this.playSound(this.elements.bootSound);
-this.elements.boot.classList.add('hidden');
-this.elements.portfolio.classList.remove('hidden');
-this.elements.keyboard.classList.remove('hidden');
-await this.typeText(Terminal.PORTFOLIO_DATA.mainText, this.elements.portfolioText);
-}
-
-async handleCommand(command) {
-switch (command) {
-case 'ВЫХОД':
-await this.typeText('ПРОИЗВОДИТСЯ ВЫКЛЮЧЕНИЕ СИСТЕМЫ...\n', this.elements.portfolioText, 20);
-await new Promise(resolve => setTimeout(resolve, 500));
-this.elements.portfolio.classList.add('hidden');
-this.elements.boot.classList.remove('hidden');
-this.elements.bootText.textContent = '*** РАБОТА ПРЕКРАЩЕНА ***\nВВЕДИТЕ \'СТАРТ\' ЧТОБЫ ЗАПУСТИТЬ КОМПЬЮТЕР\n';
-break;
-
-case 'СТАРТ':
-if (!this.elements.boot.classList.contains('hidden')) {
-await this.initialize();
-}
-break;
-
-case 'ПОРТФОЛИО':
-window.location.href = 'portfolio.html';
-break;
-
-case 'НАЗАД':
-this.elements.portfolio.classList.add('flicker');
-await this.typeText(Terminal.PORTFOLIO_DATA.mainText, this.elements.portfolioText, 20);
-this.elements.portfolio.classList.remove('flicker');
-break;
-
-default:
-this.elements.portfolio.classList.add('flicker');
-await this.typeText(`ОШИБКА ВВОДА: ${command}\n> ВВЕДИТЕ 'НАЗАД' чтобы вернуться на главный экран\n`, this.elements.portfolioText, 20);
-this.elements.portfolio.classList.remove('flicker');
-}
-}
-}
-
-document.addEventListener('DOMContentLoaded', () => new Terminal());
-</script>
+        // Запуск
+        init();
+    </script>
 </body>
 </html>

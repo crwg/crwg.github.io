@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCP Terminal</title>
+<link type="text/css" rel="stylesheet" href="styles.css" media="all" />
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div id="boot-screen" class="crt-screen">
+<pre id="boot-text">***
+ПОРТФОЛИО V1.6
+***
+
+ПРОВЕРКА ЯДРА: OK
+ПРОВЕРКА ПАМЯТИ: 64K OK
+
+...</pre>
+<div class="scanlines"></div>
+<div class="noise"></div>
+</div>
+
+<div id="portfolio" class="crt-screen hidden">
+<div class="info">
+<h1>ПОРТФОЛИО V1.6:</h1>
+</div>
+<pre id="portfolio-text"></pre>
+<span class="cursor"></span>
+<div class="scanlines"></div>
+<div class="noise"></div>
+</div>
+
+<div id="keyboard" class="crt-screen hidden">
+<input type="text" class="hidecaret" placeholder="ВВЕДИТЕ КОМАНДУ">
+<div class="scanlines"></div>
+<div class="noise"></div>
+</div>
+
+<button id="reboot-button">ПЕРЕЗАПУСК</button>
+
+<div class="sensor" style="left: 12px;"></div>
+<div class="sensor" style="left: 30px;"></div>
+<div class="sensor" style="left: 48px;"></div>
+
+<script>
+class Terminal {
+    static CONFIG = {
+        TYPING_SPEED: 10, // Скорость печати символов
+        REBOOT_DELAY: 3000, // Задержка при перезагрузке
+        INITIAL_DELAY: 2000, // Начальная задержка
+        LINE_DELAY: 100 // Задержка между строками
+    };
+
+    static PORTFOLIO_DATA = [
+        "Вейланд-Ютани: Секция закрытых экспериментов",
+        "",
+        "> ДАННЫЕ ИЗ КРИОКАПСУЛЫ:",
+        "ДАТА РОЖДЕНИЯ: 26.12.1989",
+        "СУБЪЕКТ: Власов Алексей",
+        "КОДОВОЕ ИМЯ: crwde",
+        "СТАТУС: 3D Художник",
+        "",
+        "> МОИ ПРОЕКТЫ:",
+        "1. XCOM 2024 - [Разработал игру с нуля]",
+        "2. DOT - [Написал свой язык]",
+        "",
+        "> ИНСТРУМЕНТЫ:",
+        "- ПРОГРАММЫ: [3D Art, Maya, Blender, Zbrush, Neural Networks, Python, JS]",
+        "- СРЕДСТВА КОНТРОЛЯ: [SourceTree, Git, Jira]",
+        "",
+        "> СВЯЗЬ:",
+        "E-MAIL: grimufa@gmail.com",
+        "ТВИТТЕР: @crwdex",
+        "",
+        "> ДИРЕКТИВЫ:",
+        "НАЗАД | ВЫХОД",
+        "",
+        "Примечание от Вейланд-Ютани: Сотрудник подозревается в создании цифровых ксеноморфов. Не открывайте его проекты без огнемёта и средств защиты класса D",
+		"",
+		"",
+    ];
+
+    constructor() {
+        this.elements = {
+            boot: document.getElementById('boot-screen'),
+            bootText: document.getElementById('boot-text'),
+            portfolio: document.getElementById('portfolio'),
+            portfolioText: document.getElementById('portfolio-text'),
+            keyboard: document.getElementById('keyboard'),
+            input: document.querySelector('#keyboard input'),
+            rebootBtn: document.getElementById('reboot-button'),
+        };
+
+        this.isTyping = false;
+        this.initEventListeners();
+        this.initialize();
+    }
+
+    initEventListeners() {
+        document.addEventListener('keydown', (e) => {
+            if (/^[a-zA-Zа-яА-Я]$/.test(e.key) && !this.elements.keyboard.classList.contains('hidden')) {
+                this.elements.input.focus();
+            }
+        });
+
+        this.elements.input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !this.isTyping) {
+                this.handleCommand(e.target.value.toUpperCase().trim());
+                e.target.value = '';
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+            }
+        });
+
+        this.elements.rebootBtn.addEventListener('click', () => this.reboot());
+    }
+
+    async typeText(element, text, speed = Terminal.CONFIG.TYPING_SPEED) {
+        this.isTyping = true;
+        element.textContent = '';
+        for (let i = 0; i < text.length; i++) {
+            element.textContent += text[i];
+            element.scrollTop = element.scrollHeight;
+            await new Promise(resolve => setTimeout(resolve, speed));
+        }
+        this.isTyping = false;
+    }
+
+    async reboot() {
+        this.elements.input.value = '';
+        this.elements.portfolio.classList.add('hidden');
+        this.elements.boot.classList.remove('hidden');
+        this.elements.keyboard.classList.add('hidden');
+        this.elements.bootText.textContent = '*** СИСТЕМА ПЕРЕЗАГРУЖАЕТСЯ ***\nПОЖАЛУЙСТА ПОДОЖДИТЕ ...';
+
+        await new Promise(resolve => setTimeout(resolve, Terminal.CONFIG.REBOOT_DELAY));
+
+        this.elements.bootText.textContent = '*** СИСТЕМА ЗАПУЩЕНА ***\nИНИЦИАЛИЗАЦИЯ СИСТЕМНЫХ ПРОЦЕССОВ...';
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        this.elements.bootText.textContent += '\nПОДГОТОВКА ИНТЕРФЕЙСА...';
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        this.elements.bootText.textContent += '\nЗАГРУЗКА ЗАВЕРШЕНА. ПЕРЕХОД НА ГЛАВНЫЙ ЭКРАН...';
+
+        // Плавное затухание экрана
+        document.body.style.transition = 'opacity 1s';
+        document.body.style.opacity = '0';
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Переход на главную страницу
+        window.location.href = 'index.html';
+    }
+
+    async initialize() {
+        this.elements.boot.classList.add('screen-on');
+        this.elements.keyboard.classList.add('hidden');
+
+        // Начальная задержка перед появлением текста
+        await new Promise(resolve => setTimeout(resolve, Terminal.CONFIG.INITIAL_DELAY));
+
+        this.elements.boot.classList.add('hidden');
+        this.elements.portfolio.classList.remove('hidden');
+        this.elements.keyboard.classList.remove('hidden');
+
+        // Печать текста построчно
+        for (const line of Terminal.PORTFOLIO_DATA) {
+            const lineElement = document.createElement('div');
+            lineElement.classList.add('portfolio-line');
+            this.elements.portfolioText.appendChild(lineElement);
+            await this.typeText(lineElement, line, Terminal.CONFIG.TYPING_SPEED);
+            await new Promise(resolve => setTimeout(resolve, Terminal.CONFIG.LINE_DELAY));
+        }
+    }
+	
+
+
+    async handleCommand(command) {
+        switch (command) {
+            case 'ВЫХОД':
+                await this.typeText(this.elements.portfolioText, 'ПРОИЗВОДИТСЯ ВЫКЛЮЧЕНИЕ СИСТЕМЫ...\n', 20);
+                await new Promise(resolve => setTimeout(resolve, 500));
+                this.elements.portfolio.classList.add('hidden');
+                this.elements.boot.classList.remove('hidden');
+                this.elements.bootText.textContent = '*** РАБОТА ПРЕКРАЩЕНА ***\nВВЕДИТЕ \'СТАРТ\' ЧТОБЫ ЗАПУСТИТЬ КОМПЬЮТЕР\n';
+                break;
+
+            case 'СТАРТ':
+                if (!this.elements.boot.classList.contains('hidden')) {
+                    await this.initialize();
+                }
+                break;
+
+            case 'ПОРТФОЛИО':
+                window.location.href = 'portfolio.html';
+                break;
+
+            case 'НАЗАД':
+                this.elements.portfolio.classList.add('flicker');
+                await this.typeText(this.elements.portfolioText, Terminal.PORTFOLIO_DATA.join('\n'), 20);
+                this.elements.portfolio.classList.remove('flicker');
+                break;
+
+            default:
+                this.elements.portfolio.classList.add('flicker');
+                await this.typeText(this.elements.portfolioText, `ОШИБКА ВВОДА: ${command}\n> ВВЕДИТЕ 'НАЗАД' чтобы вернуться на главный экран\n`, 20);
+                this.elements.portfolio.classList.remove('flicker');
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => new Terminal());
+</script>
+</body>
+</html>
