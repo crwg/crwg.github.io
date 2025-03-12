@@ -59,6 +59,7 @@ opacity: 0;
 animation: fadeIn 2s ease-in forwards, spin 10s ease-in-out infinite;
 z-index: 1;
 margin:4rem;
+filter: none;
 }
 
 @keyframes spin {
@@ -80,7 +81,7 @@ padding: 1rem;
 border: 2px solid var(--main-color);
 background: var(--background-color);
 position: relative;
-overflow: hidden;
+overflow: hidden-x;
 }
 
 .crt-screen::after {
