@@ -53,17 +53,18 @@ animation: twinkle 3s infinite ease-in-out;
 }
 
 .logo {
-width: 62%;
-max-width: 480px;
+width: 50%;
+max-width: 320px;
 opacity: 0;
-animation: fadeIn 2s ease-in forwards, spin 10s linear infinite;
+animation: fadeIn 2s ease-in forwards, spin 10s ease-in-out infinite;
 z-index: 1;
-padding:2rem;
+margin:4rem;
 }
 
 @keyframes spin {
-0% { transform: rotate(0deg); }
-100% { transform: rotate(360deg); }
+25% { transform: rotate(3deg); }
+50% { transform: scale(0.95); }
+75% { transform: rotate(-3deg); }
 }
 
 
