@@ -21,7 +21,7 @@
 
     <script>
         // Модуль для создания звёзд
-        const createStars = (container, count = 100) => {
+        const createStars = (container, count = 32) => {
             for (let i = 0; i < count; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
@@ -107,10 +107,7 @@ const lines = [
     "> Проверка оперативной памяти: [ОШИБКА]",
     "> Загрузка bios: 0xFF34... [НЕИЗВЕСТНЫЙ СБОЙ]",
     "> Сканирование: [СИГНАЛЫ ЖИЗНИ ОТСУТСТВУЮТ]",
-    "> Инициализация ядра: [ЗАГРЯЗНЕНИЕ СИСТЕМЫ]",
-    "> Цели: Мы должны уничтожить корабль!",
     "> Протокол: Активирована система самоуничтожения!",
-    "> Дополнительно: Давление в отсеках критическое, завязывайте уже с бобовыми!"
 ];
 
             // Создаём звёзды
@@ -126,13 +123,13 @@ const lines = [
                 const lineElement = document.createElement('div');
                 lineElement.classList.add('portfolio-line');
                 portfolio.appendChild(lineElement);
-                await typeText(lineElement, line, 20); // Печать строки
-                await new Promise((resolve) => setTimeout(resolve, 200)); // Пауза между строками
+                await typeText(lineElement, line, 25); // Печать строки
+                await new Promise((resolve) => setTimeout(resolve, 250)); // Пауза между строками
             }
 
             // Плавное исчезновение логотипа и текста
 
-            await fadeOut(portfolio, 1500);
+            await fadeOut(portfolio, 1100);
 
             // Переход на portfolio.html
             window.location.href = "portfolio.html";
