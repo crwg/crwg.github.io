@@ -90,7 +90,6 @@
                     if (progress < duration) {
                         requestAnimationFrame(step);
                     } else {
-                        element.style.display = 'none';
                         resolve();
                     }
                 };
@@ -132,10 +131,8 @@ const lines = [
             }
 
             // Плавное исчезновение логотипа и текста
-            if (logo) {
-                await fadeOut(logo, 1400);
-            }
-            await fadeOut(portfolio, 1600);
+
+            await fadeOut(portfolio, 1500);
 
             // Переход на portfolio.html
             window.location.href = "portfolio.html";
