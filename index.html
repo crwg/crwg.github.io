@@ -23,212 +23,227 @@
         <div class="noise"></div>
     </div>
 
-    <script>
-        // Модуль для создания звёзд
-        const createStars = (container, count = 32) => {
-            for (let i = 0; i < count; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                star.style.top = `${Math.random() * 100}vh`;
-                star.style.left = `${Math.random() * 100}vw`;
-                star.style.animationDelay = `${Math.random() * 3}s`;
-                container.appendChild(star);
-            }
-        };
-
-        // Модуль для печати текста с эффектом перебора символов
-        const typeText = async (element, text, speed = 50) => {
-            return new Promise((resolve) => {
-                const randomChars = "!@#$%^&*()_+-=[]{}|;:,.<>?~`";
-                let currentText = '';
-                let charIndex = 0;
-
-                const interval = setInterval(() => {
-                    if (charIndex < text.length) {
-                        // Добавляем случайные символы для эффекта "набора"
-                        let tempText = currentText;
-                        tempText += text[charIndex]; // Добавляем следующий символ из строки
-                        for (let i = charIndex + 1; i < text.length; i++) {
-                            tempText += randomChars[Math.floor(Math.random() * randomChars.length)];
-                        }
-                        element.textContent = tempText;
-                        currentText += text[charIndex]; // Сохраняем текущий символ
-                        charIndex++;
-                    } else {
-                        clearInterval(interval);
-                        resolve();
-                    }
-                }, speed);
-            });
-        };
-
-        // Модуль для плавного появления
-        const fadeIn = (element, duration = 500) => {
-            return new Promise((resolve) => {
-                element.style.opacity = 0;
-                let start = null;
-
-                const step = (timestamp) => {
-                    if (!start) start = timestamp;
-                    const progress = timestamp - start;
-                    element.style.opacity = Math.min(progress / duration, 1);
-                    if (progress < duration) {
-                        requestAnimationFrame(step);
-                    } else {
-                        resolve();
-                    }
-                };
-                requestAnimationFrame(step);
-            });
-        };
-
-        // Модуль для плавного исчезновения
-        const fadeOut = (element, duration = 500) => {
-            return new Promise((resolve) => {
-                let start = null;
-
-                const step = (timestamp) => {
-                    if (!start) start = timestamp;
-                    const progress = timestamp - start;
-                    element.style.opacity = Math.max(1 - progress / duration, 0);
-                    if (progress < duration) {
-                        requestAnimationFrame(step);
-                    } else {
-                        resolve();
-                    }
-                };
-                requestAnimationFrame(step);
-            });
-        };
-
-        // Основная функция
-        const init = async () => {
-            const starsContainer = document.getElementById('stars');
-            const portfolio = document.getElementById('portfolio');
-            const logo = document.querySelector('.logo');
-
-const lines = [
-    "> Проверка оперативной памяти: [ОШИБКА]",
-    "> Загрузка bios: 0xFF34... [НЕИЗВЕСТНЫЙ СБОЙ]",
-    "> Сканирование: [СИГНАЛЫ ЖИЗНИ ОТСУТСТВУЮТ]",
-    "> Протокол: Активирована система самоуничтожения!",
-];
-
-            // Создаём звёзды
-            createStars(starsContainer, 150);
-
-            // Плавное появление логотипа
-            if (logo) {
-                await fadeIn(logo, 1000);
-            }
-
-            // Печать текста
-            for (const line of lines) {
-                const lineElement = document.createElement('div');
-                lineElement.classList.add('portfolio-line');
-                portfolio.appendChild(lineElement);
-                await typeText(lineElement, line, 25); // Печать строки
-                await new Promise((resolve) => setTimeout(resolve, 250)); // Пауза между строками
-            }
-
-            // Плавное исчезновение логотипа и текста
-
-            await fadeOut(portfolio, 1100);
-
-            // Переход на portfolio.html
-            window.location.href = "portfolio.html";
-        };
-
-        // Запуск
-        init();
-		
-		
-		
-		
-		
-		
-		
-		
-(() => {
+<script>
     // Основные параметры
-    const LOADING_SPEED = 1.5; // Скорость загрузки (увеличение прогресса за шаг)
-    const UPDATE_INTERVAL = 50; // Интервал обновления анимации (в миллисекундах)
-    const BLUR_CHANCE = 0.5; // Вероятность эффекта дрожания и размытия (0-1)
-    const BLUR_INTENSITY = 4; // Интенсивность размытия (в пикселях)
-    const SHAKE_INTENSITY = 4; // Интенсивность дрожания (в пикселях)
-    const OPACITY_VARIATION = 0.3; // Изменение непрозрачности (0-1)
-    const BEEP_FREQUENCY_RANGE = 200; // Диапазон частоты звукового сигнала (в Гц)
-    const BEEP_DURATION = 100; // Длительность звукового сигнала (в миллисекундах)
-    const WARNING_CHANCE = 0.95; // Вероятность появления пугающего сообщения (0-1)
-    const WARNING_DURATION = 900; // Длительность пугающего сообщения (в миллисекундах)
-    const WARNING_COLOR = '#FF4136'; // Цвет пугающего сообщения
-    const NORMAL_COLOR = '#00ff00'; // Нормальный цвет текста
-    const FINAL_MESSAGE = '> SYSTEM COMPROMISED'; // Финальное сообщение
-    const FINAL_BAR_COLOR = '#FF4136'; // Цвет полосы загрузки при завершении
-    const FINAL_BORDER_COLOR = '#FF0000'; // Цвет рамки при завершении
+    const CONFIG = {
+        STARS_COUNT: 150,
+        TEXT_SPEED: 25,
+        FADE_IN_DURATION: 1000,
+        FADE_OUT_DURATION: 1100,
+        LINE_PAUSE: 250,
+        LOADING_SPEED: 1.5,
+        UPDATE_INTERVAL: 50,
+        BLUR_CHANCE: 0.5,
+        BLUR_INTENSITY: 4,
+        SHAKE_INTENSITY: 4,
+        OPACITY_VARIATION: 0.3,
+        BEEP_FREQUENCY_RANGE: 200,
+        BEEP_DURATION: 100,
+        WARNING_CHANCE: 0.95,
+        WARNING_DURATION: 900,
+        WARNING_COLOR: '#FF4136',
+        NORMAL_COLOR: '#00ff00',
+        FINAL_MESSAGE: '> SYSTEM COMPROMISED',
+        FINAL_BAR_COLOR: '#FF4136',
+        FINAL_BORDER_COLOR: '#FF0000',
+        LINES: [
+            "> Проверка оперативной памяти: [ОШИБКА]",
+            "> Загрузка bios: 0xFF34... [НЕИЗВЕСТНЫЙ СБОЙ]",
+            "> Сканирование: [СИГНАЛЫ ЖИЗНИ ОТСУТСТВУЮТ]",
+            "> Протокол: Активирована система самоуничтожения!",
+        ],
+        REDIRECT_URL: "portfolio.html"
+    };
 
-    // Элементы DOM
-    const bar = document.querySelector('.loading-bar');
-    const container = document.querySelector('.loading-bar-container');
-    const statusText = document.querySelector('.status-text');
-    let progress = 0;
-
-    // Инициализация аудио
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    function playBeep(frequency, duration) {
-        const oscillator = audioCtx.createOscillator();
-        const gainNode = audioCtx.createGain();
-        oscillator.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-        oscillator.frequency.value = frequency;
-        gainNode.gain.value = 0.1;
-        oscillator.start();
-        setTimeout(() => oscillator.stop(), duration);
-    }
-
-    // Анимация загрузки
-    const loading = setInterval(() => {
-        // Обновление прогресса
-        progress += Math.random() * LOADING_SPEED;
-        if (progress > 100) progress = 100;
-
-        bar.style.width = `${progress}%`;
-        statusText.textContent = `> LOADING: ${Math.floor(progress)}%`;
-
-        // Эффекты дрожания и размытия
-        if (Math.random() > BLUR_CHANCE) {
-            bar.style.filter = `blur(${Math.random() * BLUR_INTENSITY}px)`;
-            bar.style.opacity = 0.7 + Math.random() * OPACITY_VARIATION;
-            container.style.transform = `translate(${Math.random() * SHAKE_INTENSITY - SHAKE_INTENSITY / 2}px, ${Math.random() * SHAKE_INTENSITY - SHAKE_INTENSITY / 2}px)`;
-            playBeep(100 + Math.random() * BEEP_FREQUENCY_RANGE, BEEP_DURATION);
-            setTimeout(() => {
-                bar.style.filter = 'none';
-                bar.style.opacity = 1;
-                container.style.transform = 'none';
-            }, 100);
+    // Модуль для создания звёзд
+    const createStars = (container, count = 32) => {
+        for (let i = 0; i < count; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            container.appendChild(star);
         }
+    };
 
-        // Пугающие сообщения
-        if (progress > 40 && Math.random() > WARNING_CHANCE) {
-            statusText.style.color = WARNING_COLOR;
-            statusText.textContent = '> CONTAINMENT BREACH';
-            setTimeout(() => {
-                statusText.style.color = NORMAL_COLOR;
+    // Модуль для печати текста с эффектом перебора символов
+    const typeText = async (element, text, speed = 50) => {
+        return new Promise((resolve) => {
+            const randomChars = "!@#$%^&*()_+-=[]{}|;:,.<>?~`";
+            let currentText = '';
+            let charIndex = 0;
+
+            const interval = setInterval(() => {
+                if (charIndex < text.length) {
+                    let tempText = currentText;
+                    tempText += text[charIndex];
+                    for (let i = charIndex + 1; i < text.length; i++) {
+                        tempText += randomChars[Math.floor(Math.random() * randomChars.length)];
+                    }
+                    element.textContent = tempText;
+                    currentText += text[charIndex];
+                    charIndex++;
+                } else {
+                    clearInterval(interval);
+                    resolve();
+                }
+            }, speed);
+        });
+    };
+
+    // Модуль для плавного появления
+    const fadeIn = (element, duration = 500) => {
+        return new Promise((resolve) => {
+            element.style.opacity = 0;
+            let start = null;
+
+            const step = (timestamp) => {
+                if (!start) start = timestamp;
+                const progress = timestamp - start;
+                element.style.opacity = Math.min(progress / duration, 1);
+                if (progress < duration) {
+                    requestAnimationFrame(step);
+                } else {
+                    resolve();
+                }
+            };
+            requestAnimationFrame(step);
+        });
+    };
+
+    // Модуль для плавного исчезновения
+    const fadeOut = (element, duration = 500) => {
+        return new Promise((resolve) => {
+            let start = null;
+
+            const step = (timestamp) => {
+                if (!start) start = timestamp;
+                const progress = timestamp - start;
+                element.style.opacity = Math.max(1 - progress / duration, 0);
+                if (progress < duration) {
+                    requestAnimationFrame(step);
+                } else {
+                    resolve();
+                }
+            };
+            requestAnimationFrame(step);
+        });
+    };
+
+    // Модуль для имитации прогресс-бара
+    const simulateLoading = async (progressCallback) => {
+        const bar = document.querySelector('.loading-bar');
+        const container = document.querySelector('.loading-bar-container');
+        const statusText = document.querySelector('.status-text');
+        let progress = 0;
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const playBeep = (frequency, duration) => {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.frequency.value = frequency;
+            gainNode.gain.value = 0.1;
+            oscillator.start();
+            setTimeout(() => oscillator.stop(), duration);
+        };
+
+        return new Promise((resolve) => {
+            const loading = setInterval(() => {
+                progress += Math.random() * CONFIG.LOADING_SPEED;
+                if (progress > 100) progress = 100;
+
+                bar.style.width = `${progress}%`;
                 statusText.textContent = `> LOADING: ${Math.floor(progress)}%`;
-            }, WARNING_DURATION);
+
+                if (Math.random() > CONFIG.BLUR_CHANCE) {
+                    bar.style.filter = `blur(${Math.random() * CONFIG.BLUR_INTENSITY}px)`;
+                    bar.style.opacity = 0.7 + Math.random() * CONFIG.OPACITY_VARIATION;
+                    container.style.transform = `translate(${Math.random() * CONFIG.SHAKE_INTENSITY - CONFIG.SHAKE_INTENSITY / 2}px, ${Math.random() * CONFIG.SHAKE_INTENSITY - CONFIG.SHAKE_INTENSITY / 2}px)`;
+                    playBeep(100 + Math.random() * CONFIG.BEEP_FREQUENCY_RANGE, CONFIG.BEEP_DURATION);
+                    setTimeout(() => {
+                        bar.style.filter = 'none';
+                        bar.style.opacity = 1;
+                        container.style.transform = 'none';
+                    }, 100);
+                }
+
+                if (progress > 40 && Math.random() > CONFIG.WARNING_CHANCE) {
+                    statusText.style.color = CONFIG.WARNING_COLOR;
+                    statusText.textContent = '> CONTAINMENT BREACH';
+                    setTimeout(() => {
+                        statusText.style.color = CONFIG.NORMAL_COLOR;
+                        statusText.textContent = `> LOADING: ${Math.floor(progress)}%`;
+                    }, CONFIG.WARNING_DURATION);
+                }
+
+                if (progress >= 100) {
+                    clearInterval(loading);
+                    statusText.textContent = CONFIG.FINAL_MESSAGE;
+                    bar.style.background = CONFIG.FINAL_BAR_COLOR;
+                    container.style.border = `1px solid ${CONFIG.FINAL_BORDER_COLOR}`;
+                    playBeep(300, 500);
+                    resolve();
+                }
+
+                // Вызываем колбэк для обновления прогресса
+                if (progressCallback) {
+                    progressCallback(progress);
+                }
+            }, CONFIG.UPDATE_INTERVAL);
+        });
+    };
+
+    // Основная функция
+    const init = async () => {
+        const starsContainer = document.getElementById('stars');
+        const portfolio = document.getElementById('portfolio');
+        const logo = document.querySelector('.logo');
+
+        // Создаём звёзды
+        createStars(starsContainer, CONFIG.STARS_COUNT);
+
+        // Плавное появление логотипа
+        if (logo) {
+            await fadeIn(logo, CONFIG.FADE_IN_DURATION);
         }
 
-        // Завершение загрузки
-        if (progress >= 100) {
-            clearInterval(loading);
-            statusText.textContent = FINAL_MESSAGE;
-            bar.style.background = FINAL_BAR_COLOR;
-            container.style.border = `1px solid ${FINAL_BORDER_COLOR}`;
-            playBeep(300, 500);
-        }
-    }, UPDATE_INTERVAL);
-})();
+        // Прогресс-бар и печать текста
+        let currentProgress = 0;
+        const progressPerLine = 100 / CONFIG.LINES.length;
 
-    </script>
+        // Запускаем прогресс-бар и печать текста одновременно
+        const loadingPromise = simulateLoading((progress) => {
+            currentProgress = progress;
+        });
+
+        for (const line of CONFIG.LINES) {
+            const lineElement = document.createElement('div');
+            lineElement.classList.add('portfolio-line');
+            portfolio.appendChild(lineElement);
+            await typeText(lineElement, line, CONFIG.TEXT_SPEED);
+
+            // Увеличиваем прогресс на случайное значение в пределах progressPerLine
+            const randomProgress = progressPerLine * (0.8 + Math.random() * 0.4); // Добавляем рандом
+            currentProgress = Math.min(currentProgress + randomProgress, 100);
+            await new Promise((resolve) => setTimeout(resolve, CONFIG.LINE_PAUSE));
+        }
+
+        // Ждём завершения прогресс-бара
+        await loadingPromise;
+
+        // Плавное исчезновение логотипа и текста
+        await fadeOut(portfolio, CONFIG.FADE_OUT_DURATION);
+
+        // Переход на portfolio.html
+        window.location.href = CONFIG.REDIRECT_URL;
+    };
+
+    // Запуск
+    init();
+</script>
+
 </body>
 </html>
