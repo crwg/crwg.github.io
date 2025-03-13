@@ -274,32 +274,36 @@ opacity: 1;
 
 /* LOADING BAR */
 
-        .loading-bar-container {
-            
-			width: 100%;
-			max-width: var(--main-width);
-            height: 10px;
-            background: #1a3c34 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAKElEQVR4nGP4//8/A7mRiYmJicnJyYk5CAkJ4f///z8DAwMDExMTAwADxQvWvKXvugAAAABJRU5ErkJggg==') repeat-x;
-            background-size: 20px 10px;
-            animation: acidFlow 2s linear infinite;
-            border: 1px solid #00ff00;
-            position: relative;
-			margin-bottom: 2rem;
-        }
-        .loading-bar {
-            width: 0;
-            height: 100%;
-            background: #00ff00;
-            box-shadow: 0 0 5px #00ff00;
-            transition: width 0.3s;
-        }
-        .status-text {
-            position: absolute;
-            top: -20px;
-            left: 0;
-            color: #00ff00;
-        }
-        @keyframes acidFlow {
-            from { background-position: 0 0; }
-            to { background-position: 20px 0; }
-        }
+.loading-bar-container {
+width: 100%;
+max-width: var(--main-width);
+height: 10px;
+background: #1a1a1a;
+background-size: 20px 20px;
+animation: diagonalFlow 1.6s linear infinite;
+border: 1px dashed #00cc00;
+position: relative;
+margin-bottom: 2rem;
+}
+.loading-bar {
+width: 0;
+height: 100%;
+background: repeating-linear-gradient(
+                135deg, /* Угол наклона полосок */
+                #008800 0px,
+                #008800 6px, /* Тёмная полоса: ширина 2px */
+                #00cc00 6px,
+                #00cc00 12px /* Светлая полоса: ширина 2px, общий масштаб 4px */
+            );
+transition: width 0.3s;
+}
+.status-text {
+position: absolute;
+top: -2rem;
+left: 0;
+color: #00ff00;
+}
+@keyframes diagonalFlow {
+0% { background-position: 0 0; }
+100% { background-position: 20px 20px; }
+}

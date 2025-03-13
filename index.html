@@ -149,67 +149,86 @@ const lines = [
 		
 		
 		
-		 (()=>{
-		         const bar = document.querySelector('.loading-bar');
-        const container = document.querySelector('.loading-bar-container');
-        const statusText = document.querySelector('.status-text');
-        let progress = 0;
+(() => {
+    // Основные параметры
+    const LOADING_SPEED = 1.5; // Скорость загрузки (увеличение прогресса за шаг)
+    const UPDATE_INTERVAL = 50; // Интервал обновления анимации (в миллисекундах)
+    const BLUR_CHANCE = 0.5; // Вероятность эффекта дрожания и размытия (0-1)
+    const BLUR_INTENSITY = 4; // Интенсивность размытия (в пикселях)
+    const SHAKE_INTENSITY = 4; // Интенсивность дрожания (в пикселях)
+    const OPACITY_VARIATION = 0.3; // Изменение непрозрачности (0-1)
+    const BEEP_FREQUENCY_RANGE = 200; // Диапазон частоты звукового сигнала (в Гц)
+    const BEEP_DURATION = 100; // Длительность звукового сигнала (в миллисекундах)
+    const WARNING_CHANCE = 0.95; // Вероятность появления пугающего сообщения (0-1)
+    const WARNING_DURATION = 900; // Длительность пугающего сообщения (в миллисекундах)
+    const WARNING_COLOR = '#FF4136'; // Цвет пугающего сообщения
+    const NORMAL_COLOR = '#00ff00'; // Нормальный цвет текста
+    const FINAL_MESSAGE = '> SYSTEM COMPROMISED'; // Финальное сообщение
+    const FINAL_BAR_COLOR = '#FF4136'; // Цвет полосы загрузки при завершении
+    const FINAL_BORDER_COLOR = '#FF0000'; // Цвет рамки при завершении
 
-        // Звуки
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        function playBeep(frequency, duration) {
-            const oscillator = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            oscillator.frequency.value = frequency;
-            gainNode.gain.value = 0.1;
-            oscillator.start();
-            setTimeout(() => oscillator.stop(), duration);
+    // Элементы DOM
+    const bar = document.querySelector('.loading-bar');
+    const container = document.querySelector('.loading-bar-container');
+    const statusText = document.querySelector('.status-text');
+    let progress = 0;
+
+    // Инициализация аудио
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playBeep(frequency, duration) {
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        oscillator.frequency.value = frequency;
+        gainNode.gain.value = 0.1;
+        oscillator.start();
+        setTimeout(() => oscillator.stop(), duration);
+    }
+
+    // Анимация загрузки
+    const loading = setInterval(() => {
+        // Обновление прогресса
+        progress += Math.random() * LOADING_SPEED;
+        if (progress > 100) progress = 100;
+
+        bar.style.width = `${progress}%`;
+        statusText.textContent = `> LOADING: ${Math.floor(progress)}%`;
+
+        // Эффекты дрожания и размытия
+        if (Math.random() > BLUR_CHANCE) {
+            bar.style.filter = `blur(${Math.random() * BLUR_INTENSITY}px)`;
+            bar.style.opacity = 0.7 + Math.random() * OPACITY_VARIATION;
+            container.style.transform = `translate(${Math.random() * SHAKE_INTENSITY - SHAKE_INTENSITY / 2}px, ${Math.random() * SHAKE_INTENSITY - SHAKE_INTENSITY / 2}px)`;
+            playBeep(100 + Math.random() * BEEP_FREQUENCY_RANGE, BEEP_DURATION);
+            setTimeout(() => {
+                bar.style.filter = 'none';
+                bar.style.opacity = 1;
+                container.style.transform = 'none';
+            }, 100);
         }
 
-        // Анимация загрузки
-        const loading = setInterval(() => {
-            progress += Math.random() * 3;
-            if (progress > 100) progress = 100;
+        // Пугающие сообщения
+        if (progress > 40 && Math.random() > WARNING_CHANCE) {
+            statusText.style.color = WARNING_COLOR;
+            statusText.textContent = '> CONTAINMENT BREACH';
+            setTimeout(() => {
+                statusText.style.color = NORMAL_COLOR;
+                statusText.textContent = `> LOADING: ${Math.floor(progress)}%`;
+            }, WARNING_DURATION);
+        }
 
-            bar.style.width = `${progress}%`;
-            statusText.textContent = `> LOADING: ${Math.floor(progress)}%`;
+        // Завершение загрузки
+        if (progress >= 100) {
+            clearInterval(loading);
+            statusText.textContent = FINAL_MESSAGE;
+            bar.style.background = FINAL_BAR_COLOR;
+            container.style.border = `1px solid ${FINAL_BORDER_COLOR}`;
+            playBeep(300, 500);
+        }
+    }, UPDATE_INTERVAL);
+})();
 
-            // Дрожание и эффект кислоты
-            if (Math.random() > 0.9) {
-                bar.style.filter = `blur(${Math.random() * 2}px)`;
-                bar.style.opacity = 0.7 + Math.random() * 0.3;
-                container.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
-                playBeep(100 + Math.random() * 100, 100);
-                setTimeout(() => {
-                    bar.style.filter = 'none';
-                    bar.style.opacity = 1;
-                    container.style.transform = 'none';
-                }, 100);
-            }
-
-            // Пугающие сообщения
-            if (progress > 40 && Math.random() > 0.95) {
-                statusText.style.color = '#ff0000';
-                statusText.textContent = '> CONTAINMENT BREACH';
-                setTimeout(() => {
-                    statusText.style.color = '#00ff00';
-                    statusText.textContent = `> LOADING: ${Math.floor(progress)}%`;
-                }, 300);
-            }
-
-            if (progress >= 100) {
-                clearInterval(loading);
-                statusText.textContent = '> SYSTEM COMPROMISED';
-                bar.style.background = '#ff0000';
-                playBeep(300, 500);
-            }
-        }, 50);
-		 
-		 
-		 
-		 })();
     </script>
 </body>
 </html>
