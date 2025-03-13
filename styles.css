@@ -3,7 +3,7 @@
 --background-color: #0A0A0A;
 --radial-tap-color: rgba(255, 65, 54, 0.15);
 
---main-width: 768px;
+--main-width: 640px;
 --neon-glow: 0 0 10px var(--main-color);
 }
 
@@ -24,6 +24,10 @@ font-family: "Fira Code", monospace;
 font-size: 14px;
 color: var(--main-color);
 overflow: hidden-x;
+}
+
+#reboot-screen {
+	display: node;
 }
 
 /* Фоновые звёзды */
@@ -54,7 +58,7 @@ animation: twinkle 3s infinite ease-in-out;
 
 .logo {
 width: 50%;
-max-width: 320px;
+max-width: calc(var(--main-width)*0.5);
 opacity: 0;
 animation: fadeIn 2s ease-in forwards, spin 10s ease-in-out infinite;
 z-index: 1;
@@ -267,3 +271,35 @@ opacity: 1;
 0% { opacity: 1; }
 100% { opacity: 0; }
 }
+
+/* LOADING BAR */
+
+        .loading-bar-container {
+            
+			width: 100%;
+			max-width: var(--main-width);
+            height: 10px;
+            background: #1a3c34 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAKElEQVR4nGP4//8/A7mRiYmJicnJyYk5CAkJ4f///z8DAwMDExMTAwADxQvWvKXvugAAAABJRU5ErkJggg==') repeat-x;
+            background-size: 20px 10px;
+            animation: acidFlow 2s linear infinite;
+            border: 1px solid #00ff00;
+            position: relative;
+			margin-bottom: 2rem;
+        }
+        .loading-bar {
+            width: 0;
+            height: 100%;
+            background: #00ff00;
+            box-shadow: 0 0 5px #00ff00;
+            transition: width 0.3s;
+        }
+        .status-text {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            color: #00ff00;
+        }
+        @keyframes acidFlow {
+            from { background-position: 0 0; }
+            to { background-position: 20px 0; }
+        }
