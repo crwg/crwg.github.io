@@ -2,234 +2,291 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,shrink-to-fit=no">
-    <title>Cinematic Terminal</title>
-	<link type="text/css" rel="stylesheet" href="styles.css" media="all" />
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weyland-Yutani Interface</title>
+    <style>
+:root {
+    /* Цвета */
+    --color-primary: #FFFFFF; /* Основной цвет (белый) */
+    --color-secondary: #CCCCCC; /* Вторичный цвет (светло-серый) */
+    --color-bg: #0A0A0A; /* Основной фон (чёрный) */
+    --color-bg-secondary: #111; /* Фон терминала (тёмно-серый) */
+    --color-border: rgba(255, 255, 255, 0.1); /* Цвет границ (полупрозрачный белый) */
+    --color-grid: rgba(255, 255, 255, 0.05); /* Цвет сетки (очень светлый полупрозрачный) */
+    --color-status-bar: rgba(255, 255, 255, 0.1); /* Цвет статус-бара (полупрозрачный белый) */
+
+    /* Шрифты */
+    --font-family: 'Courier New', Courier, monospace;
+    --font-size: 14px;
+    --letter-spacing: 1px;
+
+    /* Анимации */
+    --animation-scan: scan 3s infinite linear;
+    --animation-gridPulse: gridPulse 10s infinite;
+    --animation-loadBar: loadBar 6s forwards;
+    --animation-ringPulse: ringPulse 8s infinite;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--color-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden-x;
+    font-family: var(--font-family);
+}
+.data-stream {
+    position: absolute;
+    top: 240px;
+    right: 20px;
+    width: 150px;
+    height: 100px;
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.25);
+	overflow: hidden;
+	animation: streamFlow 8s infinite linear;
+}
+
+.terminal {
+    width: 80%;
+    min-width: 320px;
+    max-width: 800px;
+    height: 80vh;
+    min-height: 480px;
+	max-height: 768px;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./dot.png');
+	background-origin: border-box;
+	background-clip: padding-box;
+	background-position: center
+    background-repeat: repeat;
+    background-size: auto; 
+    animation: var(--animation-gridPulse);
+}
+
+.scanline {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: url('./scanline.png');
+	background-origin: border-box;
+	background-clip: padding-box;
+	background-position: center
+    background-repeat: repeat;
+    background-size: auto; 
+    animation: var(--animation-scan);
+}
+
+.text {
+    position: relative;
+    z-index: 2;
+    color: var(--color-primary);
+    padding: 20px;
+    font-size: var(--font-size);
+    letter-spacing: var(--letter-spacing);
+}
+
+.line {
+    opacity: 0;
+    margin: 8px 0;
+    transition: all 0.5s;
+}
+
+.highlight {
+    color: var(--color-secondary);
+}
+
+.status-bar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 100px;
+    height: 4px;
+    background: var(--color-status-bar);
+    border: 1px solid var(--color-primary);
+    overflow: hidden;
+}
+
+.status-fill {
+    width: 0;
+    height: 100%;
+    background: var(--color-primary);
+    animation: var(--animation-loadBar);
+}
+
+.button {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: var(--font-size);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.5s;
+    z-index: 2;
+}
+
+.button:hover {
+    background: var(--color-status-bar);
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+}
+
+.holo-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: var(--animation-ringPulse);
+    pointer-events: none;
+}
+
+/* Анимации */
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+@keyframes gridPulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+@keyframes loadBar {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+@keyframes ringPulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.38; }
+    50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0.38; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-15px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes streamFlow {
+    0% { opacity: 1; transform: translateY(100%); }
+    100% { opacity: 0; transform: translateY(-100%); }
+}
+    </style>
 </head>
 <body>
-    <!-- Фоновые звёзды -->
-    <div class="stars" id="stars"></div>
-
-    <!-- Логотип и терминал -->
-    <img src="logo.png" alt="Logo" class="logo">
-	<div class="loading-bar-container">
-    <div class="loading-bar"></div>
-    <div class="status-text">> LOADING: 0%</div>
+    <div class="terminal">
+        <div class="bg-grid"></div>
+        <div class="scanline"></div>
+		<div class="data-stream">
+            010101 0xFF3A 110010<br>
+            101010 0xA9B2 001101<br>
+            111000 0xC4D1 010011<br>
+            000111 0xE8F9 101100<br>
+            010101 0xFF3A 110010<br>
+            101010 0xA9B2 001101<br>
+        </div>
+        <div class="holo-ring"></div>
+        <div class="status-bar">
+            <div class="status-fill"></div>
+        </div>
+        <div class="text">
+            <div class="line" id="line1">WEYLAND-YUTANI : SYSTEM CORE</div>
+            <div class="line" id="line2">BIOS: <span class="highlight">NOSTROMO-1979</span></div>
+            <div class="line" id="line3">UPGRADE: <span class="highlight">PROMETHEUS-2093</span></div>
+            <div class="line" id="line4">> DIAGNOSTICS: <span class="highlight">RUNNING</span></div>
+            <div class="line" id="line5">> XENO-SIGNAL: <span class="highlight">DETECTED</span></div>
+            <div class="line" id="line6">> GRID STATUS: <span class="highlight">ONLINE</span></div>
+            <div class="line" id="line7">USER: <span class="highlight">AUTHORISED</span></div>
+        </div>
+        <a href="site.html" class="button" id="enterButton">ENTER SYSTEM</a>
     </div>
-    <div class="crt-screen" id="portfolio">
-	    <h1>ЗАПУСК СИСТЕМЫ:</h1>
-        <div class="scanlines"></div>
-        <div class="noise"></div>
-    </div>
 
-<script>
-    // Основные параметры
-    const CONFIG = {
-        STARS_COUNT: 150,
-        TEXT_SPEED: 25,
-        FADE_IN_DURATION: 1000,
-        FADE_OUT_DURATION: 1100,
-        LINE_PAUSE: 250,
-        LOADING_SPEED: 1.5,
-        UPDATE_INTERVAL: 50,
-        SHAKE_INTENSITY: 4,
-        BEEP_FREQUENCY_RANGE: 200,
-        BEEP_DURATION: 100,
-        WARNING_CHANCE: 0.95,
-        WARNING_DURATION: 900,
-        WARNING_COLOR: '#FF4136',
-        NORMAL_COLOR: '#00FF00',
-        FINAL_MESSAGE: '> SYSTEM COMPROMISED',
-        FINAL_BAR_COLOR: '#FF4136',
-        FINAL_BORDER_COLOR: '#FF0000',
-        LINES: [
-            "> Проверка оперативной памяти: [ОШИБКА]",
-            "> Загрузка bios: 0xFF34... [НЕИЗВЕСТНЫЙ СБОЙ]",
-            "> Сканирование: [СИГНАЛЫ ЖИЗНИ ОТСУТСТВУЮТ]",
-            "> Протокол: Активирована система самоуничтожения!",
-        ],
-        REDIRECT_URL: "portfolio.html"
-    };
+    <script>// Настраиваемые параметры
+const CONFIG = {
+    CHAR_SCRAMBLE_SPEED: 10,   // Скорость перебора символов (мс)
+    CHAR_PAUSE: 10,            // Пауза между символами (мс)
+    SCRAMBLE_ITERATIONS: 2,    // Количество переборов для символа
+    BUTTON_DELAY: 0,         // Задержка появления кнопки (мс)
+    SYMBOLS: "@#$%^&*" // Символы для перебора
+};
 
-    // Модуль для создания звёзд
-    const createStars = (container, count = 32) => {
-        for (let i = 0; i < count; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.top = `${Math.random() * 100}vh`;
-            star.style.left = `${Math.random() * 100}vw`;
-            star.style.animationDelay = `${Math.random() * 3}s`;
-            container.appendChild(star);
-        }
-    };
+// Элементы DOM
+const lines = document.querySelectorAll('.line');
+const button = document.getElementById('enterButton');
 
-    // Модуль для печати текста с эффектом перебора символов
-    const typeText = async (element, text, speed = 50) => {
-        return new Promise((resolve) => {
-            const randomChars = "!@#$%^&*()_+-=[]{}|;:,.<>?~`";
-            let currentText = '';
-            let charIndex = 0;
-
-            const interval = setInterval(() => {
-                if (charIndex < text.length) {
-                    let tempText = currentText;
-                    tempText += text[charIndex];
-                    for (let i = charIndex + 1; i < text.length; i++) {
-                        tempText += randomChars[Math.floor(Math.random() * randomChars.length)];
-                    }
-                    element.textContent = tempText;
-                    currentText += text[charIndex];
-                    charIndex++;
+// Анимация одной строки
+const animateLine = (text, element, callback) => {
+    let pos = 0;
+    element.textContent = '';
+    
+    const typeChar = () => {
+        if (pos < text.length) {
+            let iterations = 0;
+            
+            const scramble = () => {
+                if (iterations++ < CONFIG.SCRAMBLE_ITERATIONS) {
+                    element.textContent = text.substring(0, pos) + 
+                        CONFIG.SYMBOLS.charAt(Math.floor(Math.random() * CONFIG.SYMBOLS.length));
+                    setTimeout(scramble, CONFIG.CHAR_SCRAMBLE_SPEED);
                 } else {
-                    clearInterval(interval);
-                    resolve();
-                }
-            }, speed);
-        });
-    };
-
-    // Модуль для плавного появления
-    const fadeIn = (element, duration = 500) => {
-        return new Promise((resolve) => {
-            element.style.opacity = 0;
-            let start = null;
-
-            const step = (timestamp) => {
-                if (!start) start = timestamp;
-                const progress = timestamp - start;
-                element.style.opacity = Math.min(progress / duration, 1);
-                if (progress < duration) {
-                    requestAnimationFrame(step);
-                } else {
-                    resolve();
+                    element.textContent = text.substring(0, ++pos);
+                    setTimeout(typeChar, CONFIG.CHAR_PAUSE);
                 }
             };
-            requestAnimationFrame(step);
-        });
-    };
-
-    // Модуль для плавного исчезновения
-    const fadeOut = (element, duration = 500) => {
-        return new Promise((resolve) => {
-            let start = null;
-
-            const step = (timestamp) => {
-                if (!start) start = timestamp;
-                const progress = timestamp - start;
-                element.style.opacity = Math.max(1 - progress / duration, 0);
-                if (progress < duration) {
-                    requestAnimationFrame(step);
-                } else {
-                    resolve();
-                }
-            };
-            requestAnimationFrame(step);
-        });
-    };
-
-    // Модуль для имитации прогресс-бара
-    const simulateLoading = async (progressCallback) => {
-        const bar = document.querySelector('.loading-bar');
-        const container = document.querySelector('.loading-bar-container');
-        const statusText = document.querySelector('.status-text');
-        let progress = 0;
-
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const playBeep = (frequency, duration) => {
-            const oscillator = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            oscillator.frequency.value = frequency;
-            gainNode.gain.value = 0.1;
-            oscillator.start();
-            setTimeout(() => oscillator.stop(), duration);
-        };
-
-        return new Promise((resolve) => {
-            const loading = setInterval(() => {
-                progress += Math.random() * CONFIG.LOADING_SPEED;
-                if (progress > 100) progress = 100;
-
-                bar.style.width = `${progress}%`;
-                statusText.textContent = `> LOADING: ${Math.floor(progress)}%`;
-
-
-                if (progress > 40 && Math.random() > CONFIG.WARNING_CHANCE) {
-                    statusText.style.color = CONFIG.WARNING_COLOR;
-                    statusText.textContent = '> CONTAINMENT BREACH';
-                    setTimeout(() => {
-                        statusText.style.color = CONFIG.NORMAL_COLOR;
-                        statusText.textContent = `> LOADING: ${Math.floor(progress)}%`;
-                    }, CONFIG.WARNING_DURATION);
-                }
-
-                if (progress >= 100) {
-                    clearInterval(loading);
-                    statusText.textContent = CONFIG.FINAL_MESSAGE;
-                    bar.style.background = CONFIG.FINAL_BAR_COLOR;
-                    container.style.border = `1px solid ${CONFIG.FINAL_BORDER_COLOR}`;
-                    playBeep(300, 500);
-                    resolve();
-                }
-
-                // Вызываем колбэк для обновления прогресса
-                if (progressCallback) {
-                    progressCallback(progress);
-                }
-            }, CONFIG.UPDATE_INTERVAL);
-        });
-    };
-
-    // Основная функция
-    const init = async () => {
-        const starsContainer = document.getElementById('stars');
-        const portfolio = document.getElementById('portfolio');
-        const logo = document.querySelector('.logo');
-
-        // Создаём звёзды
-        createStars(starsContainer, CONFIG.STARS_COUNT);
-
-        // Плавное появление логотипа
-        if (logo) {
-            await fadeIn(logo, CONFIG.FADE_IN_DURATION);
+            
+            scramble();
+        } else if (callback) {
+            callback();
         }
-
-        // Прогресс-бар и печать текста
-        let currentProgress = 0;
-        const progressPerLine = 100 / CONFIG.LINES.length;
-
-        // Запускаем прогресс-бар и печать текста одновременно
-        const loadingPromise = simulateLoading((progress) => {
-            currentProgress = progress;
-        });
-
-        for (const line of CONFIG.LINES) {
-            const lineElement = document.createElement('div');
-            lineElement.classList.add('portfolio-line');
-            portfolio.appendChild(lineElement);
-            await typeText(lineElement, line, CONFIG.TEXT_SPEED);
-
-            // Увеличиваем прогресс на случайное значение в пределах progressPerLine
-            const randomProgress = progressPerLine * (0.8 + Math.random() * 0.4); // Добавляем рандом
-            currentProgress = Math.min(currentProgress + randomProgress, 100);
-            await new Promise((resolve) => setTimeout(resolve, CONFIG.LINE_PAUSE));
-        }
-
-        // Ждём завершения прогресс-бара
-        await loadingPromise;
-
-        // Плавное исчезновение логотипа и текста
-        await fadeOut(portfolio, CONFIG.FADE_OUT_DURATION);
-
-        // Переход на portfolio.html
-        window.location.href = CONFIG.REDIRECT_URL;
     };
+    
+    element.style.animation = 'fadeIn 0.6s forwards';
+    typeChar();
+};
 
-    // Запуск
-    init();
+// Последовательная анимация строк
+const animateLines = (index = 0) => {
+    if (index < lines.length) {
+        const line = lines[index];
+        const text = line.textContent;
+        line.textContent = '';
+        
+        animateLine(text, line, () => animateLines(index + 1));
+    } else {
+        setTimeout(() => {
+            button.style.display = 'block';
+            button.style.animation = 'fadeIn 1s forwards';
+        }, CONFIG.BUTTON_DELAY);
+    }
+};
+
+animateLines();
 </script>
-
 </body>
 </html>
