@@ -9,18 +9,28 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/crwg/crwg.github.io/stargazers" target="_blank"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=for-the-badge&color=FFD700" alt="GitHub Stars"></a>
-  <a href="https://github.com/crwg/crwg.github.io/network" target="_blank"><img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=for-the-badge&color=00CED1" alt="GitHub Forks"></a>
-  <a href="https://github.com/crwg/crwg.github.io/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/crwg/crwg.github.io?style=for-the-badge&color=4169E1" alt="License"></a>
-  <a href="https://crwg.github.io/poker/" target="_blank"><img src="https://img.shields.io/badge/Live_Demo-Poker-FF4500?style=for-the-badge&logo=gamepad" alt="Poker Demo"></a>
-  <a href="https://crwg.github.io/matrix/" target="_blank"><img src="https://img.shields.io/badge/Live_Demo-Matrix-32CD32?style=for-the-badge&logo=code" alt="Matrix Demo"></a>
+  <a href="https://github.com/crwg/crwg.github.io/stargazers" target="_blank">
+    <img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=for-the-badge&color=FFD700" alt="GitHub Stars">
+  </a>
+  <a href="https://github.com/crwg/crwg.github.io/network" target="_blank">
+    <img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=for-the-badge&color=00CED1" alt="GitHub Forks">
+  </a>
+  <a href="https://github.com/crwg/crwg.github.io/blob/master/LICENSE" target="_blank">
+    <img src="https://img.shields.io/github/license/crwg/crwg.github.io?style=for-the-badge&color=4169E1" alt="License">
+  </a>
+  <a href="https://crwg.github.io/poker/" target="_blank">
+    <img src="https://img.shields.io/badge/Live_Demo-Poker-FF4500?style=for-the-badge&logo=gamepad" alt="Poker Demo">
+  </a>
+  <a href="https://crwg.github.io/matrix/" target="_blank">
+    <img src="https://img.shields.io/badge/Live_Demo-Matrix-32CD32?style=for-the-badge&logo=code" alt="Matrix Demo">
+  </a>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript" alt="JavaScript">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5" alt="HTML5">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3" alt="CSS3">
-  <img src="https://img.shields.io/github/last-commit/crwg/crwg.github.io?color=8A2BE2" alt="Last Commit">
+  <img src="https://img.shields.io/github/last-commit/crwg/crwg.github.io?style=flat-square&color=8A2BE2" alt="Last Commit">
 </p>
 
 <p align="center">
