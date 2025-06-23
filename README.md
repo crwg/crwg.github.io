@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hero-logo.svg" alt="CRWG Creations Logo" width="180" style="border-radius: 20px; box-shadow: 0 4px 12px rgba(0, 0, 255, 0.3);"/>
+  <img src="assets/logo.jpg" alt="CRWG Creations Logo" width="180" style="border-radius: 20px; box-shadow: 0 4px 12px rgba(0, 0, 255, 0.3);"/>
 </p>
 
 <h1 align="center">✨ CRWG's Web Dev Artistry ✨</h1>
