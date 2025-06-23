@@ -43,7 +43,7 @@ A thrilling, fully interactive **poker game** built with pure JavaScript. Face o
 
 - **Try It Now**: <a href="https://crwg.github.io/poker/" target="_blank">Play Poker! 🎲</a>
 - **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/poker" target="_blank">Source Code 📂</a>
-- <a href="assets/poker.jpg" target="_blank"><img src="assets/poker.jpg" alt="Poker Screenshot" width="350" style="border-radius: 10px;"/></a>
+<a href="assets/poker.jpg" target="_blank"><img src="assets/poker.jpg" alt="Poker Screenshot" max-width="640" style="border-radius: 10px;"/></a>
 
 ### 🌧️ Matrix Digital Rain
 A hypnotic **digital rain** animation inspired by *The Matrix*. Powered by HTML5 Canvas, this project delivers cyberpunk vibes with cascading characters that dance across your screen.
@@ -57,7 +57,7 @@ A hypnotic **digital rain** animation inspired by *The Matrix*. Powered by HTML5
 
 - **Try It Now**: <a href="https://crwg.github.io/matrix/" target="_blank">Enter the Matrix! 💾</a>
 - **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/matrix" target="_blank">Source Code 📂</a>
-- <a href="assets/matrix.jpg" target="_blank"><img src="assets/matrix.jpg" alt="Matrix Screenshot" width="350" style="border-radius: 10px;"/></a>
+<a href="assets/matrix.jpg" target="_blank"><img src="assets/matrix.jpg" alt="Matrix Screenshot" max-width="640" style="border-radius: 10px;"/></a>
 
 <p align="center">
   <a href="https://crwg.github.io/matrix/" target="_blank"><img src="assets/matrix-hero.gif" alt="Matrix Hero" width="700" style="border-radius: 15px; box-shadow: 0 6px 20px rgba(50, 205, 50, 0.3);"/></a>
