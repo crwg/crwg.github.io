@@ -1,70 +1,73 @@
 <p align="center">
-  <img src="assets/logo.png" alt="CRWG Creations Logo" width="150"/>
+  <img src="assets/hero-logo.svg" alt="CRWG Creations Logo" width="180" style="border-radius: 20px; box-shadow: 0 4px 12px rgba(0, 0, 255, 0.3);"/>
 </p>
 
-<h1 align="center">🎴 CRWG's Web Creations</h1>
+<h1 align="center">✨ CRWG's Web Dev Artistry ✨</h1>
 
 <p align="center">
-  A showcase of interactive web projects: a <strong>Texas Hold'em Poker Game</strong> and a <strong>Matrix Digital Rain Visualization</strong>. Built with passion using vanilla JavaScript, HTML5, and CSS3. Explore, play, or contribute!
-</p>
-
-<p align="center">
-  <a href="https://github.com/crwg/crwg.github.io/stargazers"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=social" alt="GitHub stars"></a>
-  <a href="https://github.com/crwg/crwg.github.io/network"><img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=social" alt="GitHub forks"></a>
-  <a href="https://github.com/crwg/crwg.github.io/blob/master/LICENSE"><img src="https://img.shields.io/github/license/crwg/crwg.github.io?color=blue" alt="License"></a>
-  <a href="https://crwg.github.io/poker/"><img src="https://img.shields.io/badge/Live_Demo-Poker-00C4B4" alt="Poker Demo"></a>
-  <a href="https://crwg.github.io/matrix/"><img src="https://img.shields.io/badge/Live_Demo-Matrix-1E90FF" alt="Matrix Demo"></a>
-  <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript" alt="JavaScript">
-  <img src="https://img.shields.io/badge/HTML5-CSS3-E34F26?logo=html5" alt="HTML5 & CSS3">
+  <em>Immerse yourself in two stunning web projects: a <strong>Texas Hold'em Poker Game</strong> and a <strong>Matrix Digital Rain Visualization</strong>. Crafted with vanilla JavaScript, HTML5, and CSS3 for maximum fun and flair!</em>
 </p>
 
 <p align="center">
-  <img src="assets/poker-demo.gif" alt="Poker Game Demo" width="600"/>
+  <a href="https://github.com/crwg/crwg.github.io/stargazers" target="_blank"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=for-the-badge&color=FFD700" alt="GitHub Stars"></a>
+  <a href="https://github.com/crwg/crwg.github.io/network" target="_blank"><img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=for-the-badge&color=00CED1" alt="GitHub Forks"></a>
+  <a href="https://github.com/crwg/crwg.github.io/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/crwg/crwg.github.io?style=for-the-badge&color=4169E1" alt="License"></a>
+  <a href="https://crwg.github.io/poker/" target="_blank"><img src="https://img.shields.io/badge/Live_Demo-Poker-FF4500?style=for-the-badge&logo=gamepad" alt="Poker Demo"></a>
+  <a href="https://crwg.github.io/matrix/" target="_blank"><img src="https://img.shields.io/badge/Live_Demo-Matrix-32CD32?style=for-the-badge&logo=code" alt="Matrix Demo"></a>
 </p>
-
-## 🌟 What's Inside?
-
-This repository is home to two exciting web projects designed to entertain and inspire:
-
-### 🎴 Poker Game
-A sleek, interactive **Texas Hold'em Poker** game built with vanilla JavaScript. Challenge AI opponents, enjoy smooth card animations, and customize your gameplay experience.
-
-- **Key Features**:
-  - 🃏 Realistic card dealing and chip animations
-  - 🤖 AI opponents with adjustable difficulty levels
-  - 📱 Responsive design for desktop and mobile
-  - ⚙️ Customizable settings (e.g., blinds, player count)
-  - 🎨 Clean, modern UI with a casino vibe
-
-- **Live Demo**: [Play Poker Now!](https://crwg.github.io/poker/)
-- **Source Code**: [./poker/](https://github.com/crwg/crwg.github.io/tree/master/poker)
 
 <p align="center">
-  <img src="assets/poker-screenshot.png" alt="Poker Screenshot" width="400"/>
+  <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript" alt="JavaScript">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3" alt="CSS3">
+  <img src="https://img.shields.io/github/last-commit/crwg/crwg.github.io?color=8A2BE2" alt="Last Commit">
 </p>
 
-### 🌌 Matrix Visualization
-A mesmerizing **digital rain** animation inspired by *The Matrix*. Built with HTML5 Canvas, this project brings cyberpunk aesthetics to life with falling characters.
+<p align="center">
+  <a href="https://crwg.github.io/poker/" target="_blank"><img src="assets/poker-hero.gif" alt="Poker Game Hero" width="700" style="border-radius: 15px; box-shadow: 0 6px 20px rgba(255, 69, 0, 0.3);"/></a>
+</p>
 
-- **Key Features**:
-  - 🌧️ Smooth, randomized character rain effect
+## 🌌 Welcome to the Experience
+
+Dive into a world of interactive web magic with two handcrafted projects designed to entertain and inspire:
+
+### 🎴 Texas Hold'em Poker
+A thrilling, fully interactive **poker game** built with pure JavaScript. Face off against cunning AI opponents, marvel at silky-smooth card animations, and feel the casino vibe from your browser.
+
+- **Highlights**:
+  - 🃏 Authentic Texas Hold'em gameplay
+  - 🤖 Smart AI with multiple difficulty levels
+  - 🎰 Stunning card and chip animations
+  - 📱 Responsive for desktop and mobile
+  - ⚙️ Customize blinds, players, and more
+
+- **Try It Now**: <a href="https://crwg.github.io/poker/" target="_blank">Play Poker! 🎲</a>
+- **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/poker" target="_blank">Source Code 📂</a>
+- **Sneak Peek**: <a href="assets/poker-screenshot.png" target="_blank"><img src="assets/poker-screenshot.png" alt="Poker Screenshot" width="350" style="border-radius: 10px;"/></a>
+
+### 🌧️ Matrix Digital Rain
+A hypnotic **digital rain** animation inspired by *The Matrix*. Powered by HTML5 Canvas, this project delivers cyberpunk vibes with cascading characters that dance across your screen.
+
+- **Highlights**:
+  - 🌌 Randomized, fluid character rain
   - 🎨 Customizable colors, speed, and density
-  - ⚡ Lightweight and optimized for performance
-  - 📱 Responsive for all screen sizes
-  - 🖼️ Perfect for backgrounds or art projects
+  - ⚡ Optimized for buttery-smooth performance
+  - 📱 Scales beautifully on any device
+  - 🖼️ Ideal for backgrounds or art installations
 
-- **Live Demo**: [See the Matrix](https://crwg.github.io/matrix/)
-- **Source Code**: [./matrix/](https://github.com/crwg/crwg.github.io/tree/master/matrix)
+- **Try It Now**: <a href="https://crwg.github.io/matrix/" target="_blank">Enter the Matrix! 💾</a>
+- **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/matrix" target="_blank">Source Code 📂</a>
+- **Sneak Peek**: <a href="assets/matrix-screenshot.png" target="_blank"><img src="assets/matrix-screenshot.png" alt="Matrix Screenshot" width="350" style="border-radius: 10px;"/></a>
 
 <p align="center">
-  <img src="assets/matrix-demo.gif" alt="Matrix Demo" width="400"/>
+  <a href="https://crwg.github.io/matrix/" target="_blank"><img src="assets/matrix-hero.gif" alt="Matrix Hero" width="700" style="border-radius: 15px; box-shadow: 0 6px 20px rgba(50, 205, 50, 0.3);"/></a>
 </p>
 
-## 🛠️ Getting Started
+## 🚀 Get Started in Seconds
 
-Ready to dive in? Follow these steps to run the projects locally:
+Ready to play or hack? Here's how to run these projects locally:
 
-1. **Clone the Repository**:
+1. **Clone the Repo**:
    ```bash
    git clone https://github.com/crwg/crwg.github.io.git
    cd crwg.github.io
