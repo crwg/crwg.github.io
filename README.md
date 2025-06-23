@@ -2,7 +2,7 @@
   <img src="assets/logo.jpg" alt="CRWG Creations Logo" width="400" style="border-radius: 20px; box-shadow: 0 4px 12px rgba(0, 0, 255, 0.3);"/>
 </p>
 
-<h1 align="center">✨ CRWG's Web Dev Artistry ✨</h1>
+<h1 align="center">CRWDE Web Lab</h1>
 
 <p align="center">
   <em>Explore two captivating web projects: a <strong>Texas Hold'em Poker Game</strong> and a <strong>Matrix Digital Rain Visualization</strong>. Built with vanilla JavaScript, HTML5, and CSS3 for maximum fun and flair!</em>
