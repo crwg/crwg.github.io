@@ -5,7 +5,7 @@
 <h1 align="center">CRWDE Web Lab</h1>
 
 <p align="center">
-  <em>Explore two captivating web projects: a <strong>Texas Hold'em Poker Game</strong> and a <strong>Matrix Digital Rain Visualization</strong>. Built with vanilla JavaScript, HTML5, and CSS3 for maximum fun and flair!</em>
+  <em>Explore two captivating web projects: a <strong>BlackJack Game</strong> and a <strong>Matrix Digital Rain Visualization</strong>. Built with vanilla JavaScript, HTML5, and CSS3 for maximum fun and flair!</em>
 </p>
 
 <p align="center">
@@ -29,28 +29,28 @@
 
 Dive into a world of interactive web magic with two handcrafted projects designed to entertain and inspire.
 
-### 🎴 Texas Hold'em Poker
-A thrilling, fully interactive **poker game** built with pure JavaScript. Face off against cunning AI opponents, marvel at silky-smooth card animations, and feel the casino vibe from your browser.
+### 🎴 BlackJack WebGame
+A thrilling, fully interactive built with pure JavaScript. Face off against cunning AI opponents, marvel at silky-smooth card animations, and feel the casino vibe from your browser.
 
 - **Highlights**:
-  - 🃏 Authentic Texas Hold'em gameplay
-  - 🤖 Smart AI with multiple difficulty levels
-  - 🎰 Stunning card and chip animations
+  - 🃏 Authentic BlackJack gameplay
+  - 🤖 Smart AI
+  - 🎰 Stunning card animations
   - 📱 Responsive for desktop and mobile
   - ⚙️ Customize blinds, players, and more
 
-- **Try It Now**: <a href="https://crwg.github.io/poker/" target="_blank">Play Poker! 🎲</a>
+- **Try It Now**: <a href="https://crwg.github.io/poker/" target="_blank">Play BlackJack! 🎲</a>
 - **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/poker" target="_blank">Source Code 📂</a>
 
 <p align="center">
   <a href="https://crwg.github.io/poker/" target="_blank">
-    <img src="assets/poker-hero.gif" alt="Poker Game Hero" width="600" style="border-radius: 15px; box-shadow: 0 6px 20px rgba(255, 69, 0, 0.3);"/>
+    <img src="assets/poker-hero.gif" alt="BlackJack Game" width="600" style="border-radius: 15px; box-shadow: 0 6px 20px rgba(255, 69, 0, 0.3);"/>
   </a>
 </p>
 
 <p align="center">
   <a href="assets/poker.jpg" target="_blank">
-    <img src="assets/poker.jpg" alt="Poker Screenshot" width="400" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
+    <img src="assets/poker.jpg" alt="BlackJack Screenshot" width="400" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
   </a>
 </p>
 
