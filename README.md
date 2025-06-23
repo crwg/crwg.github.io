@@ -78,6 +78,7 @@ A hypnotic **digital rain** animation inspired by *The Matrix*. Powered by HTML5
     <img src="assets/matrix.jpg" alt="Matrix Screenshot" width="400" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
   </a>
 </p>
+Alright, alright, alright ...
 
 ---
 
