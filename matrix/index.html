@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="preload" href="./fonts/MatrixCodeNFI.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-    <title>Matrix Rain Effect with Noise and CRT</title>
+    <title>Optimized Matrix Rain Effect</title>
     <style>
         @font-face {
             font-family: 'Matrix Code';
@@ -47,8 +47,11 @@
             top: 0;
             left: 0;
             margin: 0;
+            padding: 0;
             image-rendering: crisp-edges;
             image-rendering: pixelated;
+            border: none;
+            overflow: hidden;
         }
 
         #crt-overlay {
@@ -66,6 +69,21 @@
             background-blend-mode: multiply;
             image-rendering: pixelated;
             z-index: 10;
+            animation: flicker-crt 5s infinite;
+        }
+
+        @keyframes flicker-crt {
+            0% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1.0;
+            }
+
+            100% {
+                opacity: 0.8;
+            }
         }
 
         #bayer {
@@ -79,8 +97,23 @@
             background-repeat: repeat;
             mix-blend-mode: overlay;
             image-rendering: pixelated;
-            opacity: 0.25;
-            z-index: 11;
+            opacity: 0.3;
+            z-index: 12;
+            animation: flicker 2s infinite;
+        }
+
+        @keyframes flicker {
+            0% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 0.3;
+            }
         }
 
         #fullscreen-button {
@@ -123,168 +156,166 @@
     <div id="crt-overlay"></div>
     <button id="fullscreen-button" class="hidden" title="Toggle fullscreen">⛶</button>
     <script>
-
-
-
-        // ===== ПАРАМЕТРЫ ЭФФЕКТА =====
-        const CONFIG = {
-            // Символы
-            katakana: 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン',
-            latin: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            nums: '0123456789',
-            symbols: '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
-            // Настройки отображения
-            fontSize: 16,
-            verticalSpacing: 1, // Множитель для вертикального отступа (1.0 = без отступа)
-            trailOpacity: 0.1, // Прозрачность следа
-            frameRate: 24, // Интервал между кадрами в мс (~30 FPS)
-            // Цвета
-            headColor: '#06FF32',      // Основной цвет (ярко-зеленый)
-            mainColor: '#03A032',     // Цвет первого символа (зеленый)
-            trailColor: '#013B04',    // Цвет трейла
-            fadeColor: '#001122',     // Цвет затухания
-            flickerColor: '#FFFFFF',  // Цвет мерцания
-            glowRadius: 5,           // Радиус свечения
-            glowIntensity: 0.75,       // Интенсивность свечения
-            // Настройки анимации
-            speed: 1,               // Базовая скорость падения
-            randomResetThreshold: 0.5, // Порог случайного сброса капли
-            initialYOffset: 128,    // Начальное смещение капель за верхней границей
-            trailLength: 32,         // Максимальная длина трейла
-            // Настройки мерцания
-            flicker: {
-                minDelay: 25,    // минимальная задержка между мерцаниями (мс)
-                maxDelay: 500,   // максимальная задержка между мерцаниями
-                duration: 75,   // длительность мерцания (мс)
-                chance: 0.05     // вероятность мерцания
-            }
-        };
-        CONFIG.flickerBackground = {
-            color: `rgba(50, 200, 200, 0.382)` // Полупрозрачный зеленоватый
-        };
-        // FPS Control
-        let lastTime = 0;
-        const targetFrameTime = 1000 / CONFIG.frameRate;
-
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
-        ctx.imageSmoothingEnabled = false;
-        ctx.mozImageSmoothingEnabled = false;
-        ctx.webkitImageSmoothingEnabled = false;
-        // Устанавливаем размер canvas на весь экран
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        // Объединяем все символы
-        const alphabet = CONFIG.katakana + CONFIG.nums + CONFIG.symbols; // CONFIG.latin + 
-
-        // Количество колонок
-        let columns = Math.round(canvas.width / CONFIG.fontSize);
-
-        // Массив для хранения позиции Y каждой капли
-        const drops = [];
-        // Массив для хранения длины каждой цепочки
-        const chainLengths = [];
-        // Массив для хранения предыдущих символов (для трейла)
-        const trails = [];
-        // Массив для хранения состояния мерцания
-        const flickers = [];
-        // Инициализируем капли
-        for (let i = 0; i < columns; i++) {
-            drops[i] = Math.random() * -CONFIG.initialYOffset;
-            chainLengths[i] = Math.round(Math.random() * 15) + 5;
-            trails[i] = [];
-            flickers[i] = {
-                active: false,
-                nextFlicker: Date.now() + CONFIG.flicker.minDelay + Math.random() * CONFIG.flicker.maxDelay,
-                endTime: 0
+        (function () {
+            // ===== КОНФИГУРАЦИЯ =====
+            const CONFIG = {
+                katakana: 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン',
+                latin: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                nums: '0123456789',
+                symbols: '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
+                fontSize: 16,
+                verticalSpacing: 1,
+                trailOpacity: 0.08,
+                frameRate: 20,
+                headColor: '#06FF64',
+                mainColor: '#03A032',
+                trailColor: '#025B16',
+                fadeColor: '#001122',
+                flickerColor: '#FFFFFF',
+                glowRadius: 8,
+                glowIntensity: 0.8,
+                speed: 1,
+                randomResetThreshold: 0.8,
+                initialYOffset: 80,
+                trailLength: 40,
+                flicker: {
+                    minDelay: 40,
+                    maxDelay: 800,
+                    duration: 180,
+                    chance: 0.04
+                }
             };
-        }
 
-        // Функция для создания эффекта свечения
-        function drawGlow(x, y, text, isFlickering) {
-            const { color } = CONFIG.flickerBackground;
-            const charWidth = ctx.measureText(text).width;
-            const charHeight = CONFIG.fontSize;
+            // ===== ОПТИМИЗИРОВАННЫЙ КОД =====
+            class MatrixRain {
+                constructor() {
+                    this.canvas = document.getElementById('matrix');
+                    this.ctx = this.canvas.getContext('2d');
+                    this.alphabet = CONFIG.katakana + CONFIG.nums + CONFIG.symbols;
+                    this.columns = 0;
+                    this.columnData = [];
+                    this.lastTime = 0;
+                    this.targetFrameTime = 1000 / CONFIG.frameRate;
+                    this.hideTimeout = null;
+                    this.animationId = null;
 
-            // Сохраняем текущие настройки контекста
-            ctx.save();
+                    this.init();
+                }
 
-            if (isFlickering) {
-                ctx.fillStyle = color;
-                ctx.fillRect(x - CONFIG.fontSize/2, y - CONFIG.fontSize/2, charWidth, charHeight);
-            }
+                init() {
+                    this.setupCanvas();
+                    this.setupEventListeners();
+                    this.initColumns();
+                    this.startAnimation();
+                }
 
-            // Устанавливаем параметры свечения
-            ctx.shadowColor = `rgba(30,230,0,0.05)`;
-            ctx.shadowBlur = CONFIG.glowRadius;
-            ctx.fillStyle = getSymbolColor(0, isFlickering);
-            ctx.fillText(text, x, y);
+                setupCanvas() {
+                    this.ctx.imageSmoothingEnabled = false;
+                    this.canvas.width = window.innerWidth;
+                    this.canvas.height = window.innerHeight;
+                    this.columns = Math.floor(this.canvas.width / CONFIG.fontSize);
+                }
 
-            // Восстанавливаем настройки контекста
-            ctx.restore();
-        }
+                initColumns() {
+                    const now = Date.now();
+                    this.columnData = new Array(this.columns);
 
-        // Функция для определения цвета и прозрачности символа в зависимости от его позиции в цепочке
-        function getSymbolColor(position, isFlickering) {
-            let brightness;
-            if (position === 0) {
-                brightness = 100; // Голова
-            } else if (position < 3) {
-                brightness = 90 - position * 10;
-            } else {
-                brightness = Math.max(10, 50 - position * 2);
-            }
-            brightness = 100 - brightness;
+                    for (let i = 0; i < this.columns; i++) {
+                        this.initColumn(i, now);
+                    }
+                }
 
-            // Выбираем цвет
-            let color;
-            if (position === 0 && isFlickering) {
-                return CONFIG.flickerColor + 'FF';
-            } else if (brightness > 80) {
-                color = CONFIG.headColor;
-            } else if (brightness > 50) {
-                color = CONFIG.mainColor;
-            } else if (brightness > 20) {
-                color = CONFIG.trailColor;
-            } else {
-                color = CONFIG.fadeColor;
-            }
+                initColumn(i, now) {
+                    this.columnData[i] = {
+                        drop: Math.random() * -CONFIG.initialYOffset,
+                        chainLength: Math.floor(Math.random() * 15) + 5,
+                        trailTexts: new Array(CONFIG.trailLength),
+                        trailYs: new Uint16Array(CONFIG.trailLength),
+                        trailIndex: 0,
+                        flicker: {
+                            active: false,
+                            nextFlicker: now + CONFIG.flicker.minDelay + Math.random() * CONFIG.flicker.maxDelay,
+                            endTime: 0
+                        }
+                    };
+                }
 
-            // Прозрачность
-            const alpha = Math.min(1, brightness / 100);
-            return color + Math.floor(alpha * 255).toString(16).padStart(2, '0');
-        }
+                setupEventListeners() {
+                    window.addEventListener('resize', () => this.handleResize());
 
-        // Функция рисования
-        function draw(timestamp) {
-            if (!lastTime || timestamp - lastTime >= targetFrameTime) {
-                lastTime = timestamp;
-                const now = Date.now();
+                    const events = ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll'];
+                    events.forEach(event => {
+                        document.addEventListener(event, () => this.resetHideTimers());
+                    });
+                }
 
-                // Предварительные вычисления констант
-                const fontSize = CONFIG.fontSize;
-                const vSpacing = CONFIG.verticalSpacing;
-                const canvasHeight = canvas.height;
-                const trailOpacity = CONFIG.trailOpacity;
-                const randomResetThreshold = CONFIG.randomResetThreshold;
-                const speed = CONFIG.speed;
+                handleResize() {
+                    this.canvas.width = window.innerWidth;
+                    this.canvas.height = window.innerHeight;
+                    this.columns = Math.floor(this.canvas.width / CONFIG.fontSize);
+                    this.initColumns();
+                }
 
-                // Очищаем canvas
-                ctx.fillStyle = `rgba(0, 0, 0, ${trailOpacity})`;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                startAnimation() {
+                    if (this.animationId) {
+                        cancelAnimationFrame(this.animationId);
+                    }
+                    this.lastTime = performance.now();
+                    this.animationId = requestAnimationFrame(this.animate.bind(this));
+                }
 
-                // Устанавливаем шрифт один раз
-                ctx.font = `bold ${fontSize}px 'Matrix Code', monospace`;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
+                animate(currentTime) {
+                    const elapsed = currentTime - this.lastTime;
 
-                // Оптимизация: заранее вычисляем длину массива
-                const dropsCount = drops.length;
+                    if (elapsed >= this.targetFrameTime) {
+                        this.lastTime = currentTime - (elapsed % this.targetFrameTime);
+                        this.drawFrame();
+                    }
 
-                for (let i = 0; i < dropsCount; i++) {
-                    // Оптимизированная обработка мерцания
-                    const flicker = flickers[i];
+                    this.animationId = requestAnimationFrame(this.animate.bind(this));
+                }
+
+                drawFrame() {
+                    // Очистка с прозрачностью для эффекта шлейфа
+                    this.ctx.fillStyle = `rgba(0, 0, 0, ${CONFIG.trailOpacity})`;
+                    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                    this.ctx.font = `bold ${CONFIG.fontSize}px 'Matrix Code', monospace`;
+                    this.ctx.textAlign = 'center';
+                    this.ctx.textBaseline = 'middle';
+
+                    const now = Date.now();
+
+                    for (let i = 0; i < this.columns; i++) {
+                        this.drawColumn(i, now);
+                    }
+                }
+
+                drawColumn(i, now) {
+                    const column = this.columnData[i];
+                    const fontSize = CONFIG.fontSize;
+                    const vSpacing = CONFIG.verticalSpacing;
+
+                    this.updateFlickerState(column, now);
+
+                    const positionInChain = Math.floor(column.drop) % column.chainLength | 0;
+                    const text = this.alphabet.charAt(Math.floor(Math.random() * this.alphabet.length));
+                    const x = i * fontSize + fontSize / 2;
+                    const y = column.drop * fontSize * vSpacing;
+
+                    this.updateTrail(column, text, y, positionInChain);
+                    this.drawTrail(column, x);
+
+                    if (positionInChain === 0 && y >= -fontSize && y < this.canvas.height) {
+                        this.drawHeadSymbol(x, y, text, column.flicker.active);
+                    }
+
+                    this.resetDropIfNeeded(column, i);
+                    column.drop += CONFIG.speed;
+                }
+
+                updateFlickerState(column, now) {
+                    const flicker = column.flicker;
                     if (!flicker.active && now > flicker.nextFlicker && Math.random() < CONFIG.flicker.chance) {
                         flicker.active = true;
                         flicker.endTime = now + CONFIG.flicker.duration;
@@ -292,106 +323,129 @@
                         flicker.active = false;
                         flicker.nextFlicker = now + CONFIG.flicker.minDelay + Math.random() * CONFIG.flicker.maxDelay;
                     }
+                }
 
-                    // Используем битовые операции для целочисленного деления
-                    const positionInChain = Math.round(drops[i]) % chainLengths[i] | 0;
-                    const text = alphabet.charAt(Math.random() * alphabet.length | 0);
-                    const x = i * fontSize;
-                    const y = drops[i] * fontSize * vSpacing;
+                updateTrail(column, text, y, positionInChain) {
+                    column.trailTexts[column.trailIndex] = { text, positionInChain };
+                    column.trailYs[column.trailIndex] = y;
+                    column.trailIndex = (column.trailIndex + 1) % CONFIG.trailLength;
+                }
 
-                    // Оптимизация работы с массивом трейла
-                    const trail = trails[i];
-                    trail.unshift({ text, x, y, positionInChain });
-                    if (trail.length > CONFIG.trailLength) {
-                        trail.pop();
+                drawTrail(column, x) {
+                    for (let j = 0; j < CONFIG.trailLength; j++) {
+                        const idx = (column.trailIndex + j) % CONFIG.trailLength;
+                        const item = column.trailTexts[idx];
+                        if (!item) continue;
+
+                        const y = column.trailYs[idx];
+                        this.ctx.fillStyle = this.getSymbolColor(item.positionInChain, false);
+                        this.ctx.fillText(item.text, x, y);
+                    }
+                }
+
+                drawHeadSymbol(x, y, text, isFlickering) {
+                    this.drawGlow(x, y, text, isFlickering);
+                    this.ctx.fillStyle = this.getSymbolColor(0, isFlickering);
+                    this.ctx.fillText(text, x, y);
+                }
+
+                drawGlow(x, y, text, isFlickering) {
+                    const charWidth = this.ctx.measureText(text).width;
+                    const charHeight = CONFIG.fontSize;
+
+                    this.ctx.save();
+                    if (isFlickering) {
+                        this.ctx.fillStyle = `rgba(50, 200, 200, 0.382)`;
+                        this.ctx.fillRect(x - CONFIG.fontSize / 2, y - CONFIG.fontSize / 2, charWidth, charHeight);
                     }
 
-                    // Рисуем трейл (обратный порядок для правильного наложения)
-                    const trailLength = trail.length;
-                    for (let j = trailLength - 1; j > 0; j--) {
-                        const item = trail[j];
-                        ctx.fillStyle = getSymbolColor(item.positionInChain, false);
-                        ctx.fillText(item.text, item.x, item.y);
-                    }
+                    this.ctx.shadowColor = `rgba(30, 230, 0, ${isFlickering ? 0.08 : 0.03})`;
+                    this.ctx.shadowBlur = CONFIG.glowRadius;
+                    this.ctx.fillStyle = this.getSymbolColor(0, isFlickering);
+                    this.ctx.fillText(text, x, y);
+                    this.ctx.restore();
+                }
 
-                    // Рисуем головной символ
-                    if (positionInChain === 0) {
-                        const yPos = y;
-                        if (yPos >= -fontSize && yPos < canvasHeight) {
-                            drawGlow(x, yPos, text, flicker.active);
-                            ctx.fillStyle = getSymbolColor(0, flicker.active);
-                            ctx.fillText(text, x, yPos);
-                        }
-                    }
+                getSymbolColor(position, isFlickering) {
+                    if (position === 0 && isFlickering) return CONFIG.flickerColor + 'FF';
 
-                    // Оптимизированный сброс капли
-                    if (drops[i] * fontSize > canvasHeight + fontSize && Math.random() > randomResetThreshold) {
-                        drops[i] = 0;
-                        chainLengths[i] = (Math.random() * 15 | 0);
-                        trails[i] = [];
-                        flickers[i] = {
-                            active: false,
-                            nextFlicker: now + CONFIG.flicker.minDelay + Math.random() * CONFIG.flicker.maxDelay,
-                            endTime: 0
-                        };
+                    let brightness;
+                    if (position === 0) brightness = 100;
+                    else if (position < 3) brightness = 90 - position * 10;
+                    else brightness = Math.max(10, 50 - position * 2);
+
+                    brightness = 100 - brightness;
+
+                    let color;
+                    if (brightness > 80) color = CONFIG.headColor;
+                    else if (brightness > 50) color = CONFIG.mainColor;
+                    else if (brightness > 20) color = CONFIG.trailColor;
+                    else color = CONFIG.fadeColor;
+
+                    const alpha = Math.min(1, brightness / 100);
+                    return color + Math.floor(alpha * 255).toString(16).padStart(2, '0');
+                }
+
+                resetDropIfNeeded(column, i) {
+                    if (column.drop * CONFIG.fontSize > this.canvas.height + CONFIG.fontSize &&
+                        Math.random() > CONFIG.randomResetThreshold) {
+                        this.initColumn(i, Date.now());
                     }
-                    drops[i] += speed;
+                }
+
+                resetHideTimers() {
+                    const btn = document.getElementById('fullscreen-button');
+                    if (btn) btn.classList.remove('hidden');
+                    document.body.classList.remove('cursor-hidden');
+
+                    clearTimeout(this.hideTimeout);
+                    this.hideTimeout = setTimeout(() => {
+                        document.getElementById('fullscreen-button').classList.add('hidden');
+                        document.body.classList.add('cursor-hidden');
+                    }, 1000);
+                }
+
+                destroy() {
+                    if (this.animationId) {
+                        cancelAnimationFrame(this.animationId);
+                    }
                 }
             }
-            requestAnimationFrame(draw);
-        }
 
-        // Обработчик изменения размера окна
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            columns = Math.round(canvas.width / CONFIG.fontSize);
-        };
+            // ===== УПРАВЛЕНИЕ ПОЛНОЭКРАННЫМ РЕЖИМОМ =====
+            class FullscreenManager {
+                constructor() {
+                    this.button = document.getElementById('fullscreen-button');
+                    this.setup();
+                }
 
-        // Таймеры для управления скрытием элементов
-        let hideTimeout;
+                setup() {
+                    if (this.button) {
+                        this.button.addEventListener('click', () => this.toggleFullscreen());
+                    }
+                }
 
-        // Создаем кнопку полноэкранного режима
-        function FullscreenButton() {
-            const btn = document.getElementById('fullscreen-button');
-            btn.onclick = toggleFullscreen;
-            resetHideTimers(); // Запускаем таймеры скрытия
-        }
-        // Функция для переключения полноэкранного режима
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) document.documentElement.requestFullscreen();
-            else document.exitFullscreen();
-            resetHideTimers(); // Сброс таймеров при взаимодействии
-        }
-        // Сброс таймеров скрытия
-        function resetHideTimers() {
-            const btn = document.getElementById('fullscreen-button');
-            if (btn) btn.classList.remove('hidden');
-            document.body.classList.remove('cursor-hidden');
+                toggleFullscreen() {
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen().catch(err => {
+                            console.error('Error attempting to enable fullscreen:', err);
+                        });
+                    } else {
+                        document.exitFullscreen();
+                    }
+                }
+            }
 
-            // Очищаем предыдущие таймеры
-            clearTimeout(hideTimeout);
-            // Устанавливаем новые таймеры
-            hideTimeout = setTimeout(() => {
-                document.getElementById('fullscreen-button').classList.add('hidden');
-                document.body.classList.add('cursor-hidden');
-            }, 1000);
-        }
-        // Инициализация при загрузке
+            // ===== ИНИЦИАЛИЗАЦИЯ =====
+            document.addEventListener('DOMContentLoaded', () => {
+                const fullscreenManager = new FullscreenManager();
+                const matrixRain = new MatrixRain();
 
-        document.addEventListener('DOMContentLoaded', () => {
-            FullscreenButton();
-            // Add event listeners
-            const events = ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll'];
-            events.forEach(event => {
-                document.addEventListener(event, resetHideTimers);
+                window.addEventListener('beforeunload', () => {
+                    matrixRain.destroy();
+                });
             });
-            window.addEventListener('resize', resizeCanvas);
-            // Start animation
-            requestAnimationFrame(draw);
-        });
-
-
+        })();
     </script>
 </body>
 
