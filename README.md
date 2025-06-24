@@ -51,7 +51,7 @@ A thrilling, fully interactive built with pure JavaScript. Face off against cunn
 </p>
 
 ### 🌧️ Matrix Digital Rain
-A hypnotic **digital rain** animation inspired by *The Matrix*. Powered by HTML5 Canvas, this project delivers cyberpunk vibes with cascading characters that dance across your screen.
+A hypnotic immersive **digital rain** animation inspired by *The Matrix*. Powered by HTML5 Canvas, this project delivers cyberpunk vibes with cascading characters that dance across your screen.
 
 - **Highlights**:
   - 🌌 Randomized, fluid character rain
