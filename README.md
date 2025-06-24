@@ -2,7 +2,7 @@
   <img src="assets/logo.jpg" alt="CRWG Creations Logo" width="640" style="pointer-events: none;border-radius: 20px; box-shadow: 0 4px 12px rgba(0, 0, 255, 0.3);"/>
 </p>
 
-<h1 align="center">CRWDE Web Lab</h1>
+<h1 align="center">Personal Web Lab</h1>
 
 <p align="center">
   <em>Explore two captivating web projects: a <strong>BlackJack Game</strong> and a <strong>Matrix Digital Rain Visualization</strong>. Built with vanilla JavaScript, HTML5, and CSS3 for maximum fun and flair!</em>
