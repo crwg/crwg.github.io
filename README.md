@@ -5,10 +5,6 @@
 <h1 align="center">Personal Web Lab</h1>
 
 <p align="center">
-  <em>Explore two captivating web projects: a <strong>BlackJack Game</strong> and a <strong>Matrix Digital Rain Visualization</strong>. Built with vanilla JavaScript, HTML5, and CSS3 for maximum fun and flair!</em>
-</p>
-
-<p align="center">
   <a href="https://github.com/crwg/crwg.github.io/stargazers" target="_blank"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=for-the-badge&color=FFD700" alt="GitHub Stars"></a>
   <a href="https://github.com/crwg/crwg.github.io/network" target="_blank"><img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=for-the-badge&color=00CED1" alt="GitHub Forks"></a>
   <a href="https://github.com/crwg/crwg.github.io/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/badge/License-MIT-4169E1?style=for-the-badge" alt="MIT License"></a>
