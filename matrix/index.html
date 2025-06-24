@@ -426,7 +426,7 @@
         function updateCanvasSize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight; // Используем полную высоту, так как safe-area уже учтена в CSS
-            const newColumns = Math.floor(canvas.width / CONFIG.fontSize);
+            const newColumns = Math.round(canvas.width / CONFIG.fontSize);
 
             if (newColumns > drops.length) {
                 for (let i = drops.length; i < newColumns; i++) {
