@@ -144,18 +144,23 @@
                 }
             };
 
+            // ===== ПРЕДВАРИТЕЛЬНЫЕ ДАННЫЕ =====
+            const ALPHABET = CONFIG.katakana + CONFIG.nums + CONFIG.symbols;
+            const ALPHABET_LENGTH = ALPHABET.length;
+            const COLOR_CACHE = new Map();
+
             // ===== ОПТИМИЗИРОВАННЫЙ КОД =====
             class MatrixRain {
                 constructor() {
                     this.canvas = document.getElementById('matrix');
                     this.ctx = this.canvas.getContext('2d');
-                    this.alphabet = CONFIG.katakana + CONFIG.nums + CONFIG.symbols;
                     this.columns = 0;
                     this.columnData = [];
                     this.lastTime = 0;
                     this.targetFrameTime = 1000 / CONFIG.frameRate;
                     this.hideTimeout = null;
                     this.animationId = null;
+                    this.trailCache = new Array(CONFIG.trailLength).fill(null);
 
                     this.init();
                 }
@@ -184,11 +189,14 @@
                 }
 
                 initColumn(i, now) {
+                    const trailTexts = this.trailCache.slice();
+                    const trailYs = new Uint16Array(CONFIG.trailLength);
+                    
                     this.columnData[i] = {
                         drop: Math.random() * -CONFIG.initialYOffset,
                         chainLength: Math.floor(Math.random() * 15) + 5,
-                        trailTexts: new Array(CONFIG.trailLength),
-                        trailYs: new Uint16Array(CONFIG.trailLength),
+                        trailTexts: trailTexts,
+                        trailYs: trailYs,
                         trailIndex: 0,
                         flicker: {
                             active: false,
@@ -219,10 +227,10 @@
                         cancelAnimationFrame(this.animationId);
                     }
                     this.lastTime = performance.now();
-                    this.animationId = requestAnimationFrame(this.animate.bind(this));
+                    this.animate();
                 }
 
-                animate(currentTime) {
+                animate = (currentTime = performance.now()) => {
                     const elapsed = currentTime - this.lastTime;
 
                     if (elapsed >= this.targetFrameTime) {
@@ -230,7 +238,7 @@
                         this.drawFrame();
                     }
 
-                    this.animationId = requestAnimationFrame(this.animate.bind(this));
+                    this.animationId = requestAnimationFrame(this.animate);
                 }
 
                 drawFrame() {
@@ -241,7 +249,6 @@
                     this.ctx.font = `bold ${CONFIG.fontSize}px 'Matrix Code', monospace`;
                     this.ctx.textAlign = 'center';
                     this.ctx.textBaseline = 'middle';
-                    
 
                     const now = Date.now();
 
@@ -258,7 +265,7 @@
                     this.updateFlickerState(column, now);
 
                     const positionInChain = Math.floor(column.drop) % column.chainLength | 0;
-                    const text = this.alphabet.charAt(Math.floor(Math.random() * this.alphabet.length));
+                    const text = ALPHABET.charAt(Math.floor(Math.random() * ALPHABET_LENGTH));
                     const x = i * fontSize + fontSize / 2;
                     const y = column.drop * fontSize * vSpacing;
 
@@ -297,49 +304,58 @@
                         if (!item) continue;
 
                         const y = column.trailYs[idx];
-                        this.ctx.fillStyle = this.getSymbolColor(item.positionInChain, false);
+                        this.ctx.fillStyle = this.getCachedColor(item.positionInChain, false);
                         this.ctx.fillText(item.text, x, y);
-
                     }
                 }
 
                 drawHeadSymbol(x, y, text, isFlickering) {
                     this.drawGlow(x, y, text, isFlickering);
-                    this.ctx.fillStyle = this.getSymbolColor(0, isFlickering);
+                    this.ctx.fillStyle = this.getCachedColor(0, isFlickering);
                     this.ctx.fillText(text, x, y);
                 }
 
                 drawGlow(x, y, text, isFlickering) {
+                    if (!isFlickering) return;
+                    
                     const charWidth = this.ctx.measureText(text).width;
                     const charHeight = CONFIG.fontSize;
 
-
-
                     this.ctx.save();
-                    if (isFlickering) {
-                        this.ctx.fillStyle = `rgba(50, 200, 200, 0.382)`;
-                        this.ctx.fillRect(x - CONFIG.fontSize / 2, y - CONFIG.fontSize / 2, charWidth, charHeight);
-                        }
+                    this.ctx.fillStyle = `rgba(50, 200, 200, 0.382)`;
+                    this.ctx.fillRect(x - CONFIG.fontSize / 2, y - CONFIG.fontSize / 2, charWidth, charHeight);
+                    this.ctx.restore();
                 }
 
-                getSymbolColor(position, isFlickering) {
-                    if (position === 0 && isFlickering) return CONFIG.flickerColor + 'FF';
-
-                    let brightness;
-                    if (position === 0) brightness = 100;
-                    else if (position < 3) brightness = 90 - position * 10;
-                    else brightness = Math.max(10, 50 - position * 2);
-
-                    brightness = 100 - brightness;
+                getCachedColor(position, isFlickering) {
+                    const cacheKey = `${position}_${isFlickering}`;
+                    
+                    if (COLOR_CACHE.has(cacheKey)) {
+                        return COLOR_CACHE.get(cacheKey);
+                    }
 
                     let color;
-                    if (brightness > 80) color = CONFIG.headColor;
-                    else if (brightness > 50) color = CONFIG.mainColor;
-                    else if (brightness > 20) color = CONFIG.trailColor;
-                    else color = CONFIG.fadeColor;
+                    if (position === 0 && isFlickering) {
+                        color = CONFIG.flickerColor + 'FF';
+                    } else {
+                        let brightness;
+                        if (position === 0) brightness = 100;
+                        else if (position < 3) brightness = 90 - position * 10;
+                        else brightness = Math.max(10, 50 - position * 2);
 
-                    const alpha = Math.min(1, brightness / 100);
-                    return color + Math.floor(alpha * 255).toString(16).padStart(2, '0');
+                        brightness = 100 - brightness;
+
+                        if (brightness > 80) color = CONFIG.headColor;
+                        else if (brightness > 50) color = CONFIG.mainColor;
+                        else if (brightness > 20) color = CONFIG.trailColor;
+                        else color = CONFIG.fadeColor;
+
+                        const alpha = Math.min(1, brightness / 100);
+                        color += Math.floor(alpha * 255).toString(16).padStart(2, '0');
+                    }
+
+                    COLOR_CACHE.set(cacheKey, color);
+                    return color;
                 }
 
                 resetDropIfNeeded(column, i) {
@@ -365,6 +381,7 @@
                     if (this.animationId) {
                         cancelAnimationFrame(this.animationId);
                     }
+                    COLOR_CACHE.clear();
                 }
             }
 
