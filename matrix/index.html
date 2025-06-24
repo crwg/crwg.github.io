@@ -54,32 +54,28 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            background:
-                /* Горизонтальные линии (scanlines) */
-                repeating-linear-gradient(0deg,
-                    rgba(0, 0, 0, 0.5) 2px,
-                    /* Полупрозрачный зеленый */
-                    rgba(0, 255, 0, 0.05) 5px,
-                    /* Толщина линии */
-                    transparent 4px,
-                    /* Прозрачный промежуток */
-                    transparent 8px
-                    /* Расстояние между линиями */
-                ),
-                repeating-linear-gradient(90deg,
-                    rgba(0, 0, 0, 0.5) 2px,
-                    /* Полупрозрачный зеленый */
-                    rgba(0, 255, 0, 0.05) 5px,
-                    /* Толщина линии */
-                    transparent 4px,
-                    /* Прозрачный промежуток */
-                    transparent 8px
-                    /* Расстояние между линиями */
-                ),
-                radial-gradient(circle at center,
-                    transparent 50%,
-                    rgba(0, 0, 0, 0.5) 100%);
+            background: radial-gradient(circle at center,
+                        transparent 38.2%,
+                        rgba(0, 0, 0, 0.618) 100%),
+                        url('assets/RGB.png');
+            background-repeat: repeat;
+            background-blend-mode: multiply;
+            image-rendering: pixelated;
             z-index: 10;
+        }
+            #bayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: url('assets/bayer8.png');
+            background-repeat: repeat;
+            mix-blend-mode: overlay; 
+            image-rendering: pixelated;
+            opacity: 0.382;
+            z-index: 11;
         }
         #fullscreen-button {
             margin: 0;
@@ -116,7 +112,9 @@
 
 <body>
     <canvas id="matrix"></canvas>
+    <div id="bayer"></div>
     <div id="crt-overlay"></div>
+
 
     <script>
         // ===== ПАРАМЕТРЫ ЭФФЕКТА =====
@@ -128,8 +126,8 @@
             symbols: '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
 
             // Настройки отображения
-            fontSize: 16,
-            verticalSpacing: 1, // Множитель для вертикального отступа (1.0 = без отступа)
+            fontSize: 15,
+            verticalSpacing: 1.25, // Множитель для вертикального отступа (1.0 = без отступа)
             trailOpacity: 0.1, // Прозрачность следа
             frameRate: 15, // Интервал между кадрами в мс (~30 FPS)
 
@@ -139,14 +137,14 @@
             trailColor: '#013B04',    // Цвет трейла
             fadeColor: '#001122',     // Цвет затухания
             flickerColor: '#AAFFEE',  // Цвет мерцания
-            glowRadius: 16,           // Радиус свечения
-            glowIntensity: 0.8,       // Интенсивность свечения
+            glowRadius: 15,           // Радиус свечения
+            glowIntensity: 1.0,       // Интенсивность свечения
 
             // Настройки анимации
             speed: 1,               // Базовая скорость падения
-            randomResetThreshold: 0.618, // Порог случайного сброса капли
+            randomResetThreshold: 0.5, // Порог случайного сброса капли
             initialYOffset: 100,    // Начальное смещение капель за верхней границей
-            trailLength: 8,         // Максимальная длина трейла
+            trailLength: 15,         // Максимальная длина трейла
 
             // Настройки мерцания
             flicker: {
