@@ -37,6 +37,7 @@
             background-color: #000;
             font-family: 'Matrix Code', 'Courier New', monospace;
             font-weight: 700;
+            filter: contrast(1.08) brightness(1.64);
         }
 
         canvas {
@@ -66,26 +67,13 @@
                     rgba(0, 0, 0, 0.618) 100%),
                 url('assets/RGB.png');
             background-repeat: repeat;
-            background-blend-mode: multiply;
+            background-blend-mode: overlay;
             image-rendering: pixelated;
             z-index: 10;
-            opacity: 0.5;
+            opacity: 0.8;
             animation: flicker-crt 8s infinite;
         }
 
-        @keyframes flicker-crt {
-            0% {
-                opacity: 0.8;
-            }
-
-            50% {
-                opacity: 0.65;
-            }
-
-            100% {
-                opacity: 0.8;
-            }
-        }
         #fullscreen-button {
             margin: 0;
             padding: 0;
@@ -253,6 +241,7 @@
                     this.ctx.font = `bold ${CONFIG.fontSize}px 'Matrix Code', monospace`;
                     this.ctx.textAlign = 'center';
                     this.ctx.textBaseline = 'middle';
+                    
 
                     const now = Date.now();
 
@@ -298,7 +287,7 @@
                 updateTrail(column, text, y, positionInChain) {
                     column.trailTexts[column.trailIndex] = { text, positionInChain };
                     column.trailYs[column.trailIndex] = y;
-                    column.trailIndex = (column.trailIndex + 1) % CONFIG.trailLength;
+                    column.trailIndex = (column.trailIndex + 4) % CONFIG.trailLength;
                 }
 
                 drawTrail(column, x) {
@@ -310,6 +299,7 @@
                         const y = column.trailYs[idx];
                         this.ctx.fillStyle = this.getSymbolColor(item.positionInChain, false);
                         this.ctx.fillText(item.text, x, y);
+
                     }
                 }
 
@@ -323,17 +313,13 @@
                     const charWidth = this.ctx.measureText(text).width;
                     const charHeight = CONFIG.fontSize;
 
+
+
                     this.ctx.save();
                     if (isFlickering) {
                         this.ctx.fillStyle = `rgba(50, 200, 200, 0.382)`;
                         this.ctx.fillRect(x - CONFIG.fontSize / 2, y - CONFIG.fontSize / 2, charWidth, charHeight);
-                    }
-
-                    this.ctx.shadowColor = `rgba(30, 230, 0, ${isFlickering ? 0.08 : 0.03})`;
-                    this.ctx.shadowBlur = CONFIG.glowRadius;
-                    this.ctx.fillStyle = this.getSymbolColor(0, isFlickering);
-                    this.ctx.fillText(text, x, y);
-                    this.ctx.restore();
+                        }
                 }
 
                 getSymbolColor(position, isFlickering) {
