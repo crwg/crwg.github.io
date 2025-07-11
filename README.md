@@ -45,7 +45,7 @@ An immersive 3D visualization tool for exploring architectural designs with phot
 </p>
 
 <p align="center">
-  <a href="assets/arch.jpg" target="_blank">
+  <a a href="https://crwg.github.io/arch/" target="_blank">
     <img src="assets/arch.jpg" alt="Architecture Screenshot" width="600" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
   </a>
 </p>
@@ -70,7 +70,7 @@ A thrilling, fully interactive built with pure JavaScript. Face off against cunn
 </p>
 
 <p align="center">
-  <a href="assets/poker.jpg" target="_blank">
+  <a href="https://crwg.github.io/poker" target="_blank">
     <img src="assets/poker.jpg" alt="BlackJack Screenshot" width="600" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
   </a>
 </p>
@@ -95,7 +95,7 @@ A hypnotic immersive **digital rain** animation inspired by *The Matrix*. Powere
 </p>
 
 <p align="center">
-  <a href="assets/matrix.jpg" target="_blank">
+  <a href="https://crwg.github.io/matrix" target="_blank">
     <img src="assets/matrix.jpg" alt="Matrix Screenshot" width="600" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
   </a>
 </p>
