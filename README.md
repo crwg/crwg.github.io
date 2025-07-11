@@ -38,7 +38,6 @@ An immersive 3D visualization tool for exploring architectural designs with phot
 
 - **Try It Now**: <a href="https://crwg.github.io/arch/" target="_blank">Explore Architecture! 🏗️</a>
 - **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/arch" target="_blank">Source Code 📂</a>
-
 <p align="center">
   <a href="https://crwg.github.io/arch/" target="_blank">
     <img src="assets/arch-hero.gif" alt="Architectural Viewer" width="600" style="border-radius: 15px; box-shadow: 0 6px 20px rgba(0, 100, 0, 0.3);"/>
