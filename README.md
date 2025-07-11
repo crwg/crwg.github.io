@@ -47,7 +47,7 @@ An immersive 3D visualization tool for exploring architectural designs with phot
 
 <p align="center">
   <a href="assets/arch.jpg" target="_blank">
-    <img src="assets/arch.jpg" alt="Architecture Screenshot" width="400" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
+    <img src="assets/arch.jpg" alt="Architecture Screenshot" width="600" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
   </a>
 </p>
 
@@ -72,7 +72,7 @@ A thrilling, fully interactive built with pure JavaScript. Face off against cunn
 
 <p align="center">
   <a href="assets/poker.jpg" target="_blank">
-    <img src="assets/poker.jpg" alt="BlackJack Screenshot" width="400" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
+    <img src="assets/poker.jpg" alt="BlackJack Screenshot" width="600" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
   </a>
 </p>
 
@@ -97,7 +97,7 @@ A hypnotic immersive **digital rain** animation inspired by *The Matrix*. Powere
 
 <p align="center">
   <a href="assets/matrix.jpg" target="_blank">
-    <img src="assets/matrix.jpg" alt="Matrix Screenshot" width="400" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
+    <img src="assets/matrix.jpg" alt="Matrix Screenshot" width="600" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
   </a>
 </p>
 Alright, alright, alright ...
