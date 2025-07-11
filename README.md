@@ -10,6 +10,7 @@
   <a href="https://github.com/crwg/crwg.github.io/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/badge/License-MIT-4169E1?style=for-the-badge" alt="MIT License"></a>
   <a href="https://crwg.github.io/poker/" target="_blank"><img src="https://img.shields.io/badge/Live_Demo-Poker-FF4500?style=for-the-badge&logo=gamepad" alt="Poker Demo"></a>
   <a href="https://crwg.github.io/matrix/" target="_blank"><img src="https://img.shields.io/badge/Live_Demo-Matrix-32CD32?style=for-the-badge&logo=code" alt="Matrix Demo"></a>
+  <a href="https://crwg.github.io/arch/" target="_blank"><img src="https://img.shields.io/badge/Live_Demo-Architecture-006400?style=for-the-badge&logo=map" alt="Arch Viewer Demo"></a>
 </p>
 
 <p align="center">
@@ -24,6 +25,31 @@
 ## 🌌 Welcome to the Experience
 
 Dive into a world of interactive web magic with two handcrafted projects designed to entertain and inspire.
+
+## 🏛️ Architectural Viewer
+An immersive 3D visualization tool for exploring architectural designs with photorealistic rendering and interactive controls.
+
+- **Highlights**:
+  - 🏙️ Real-time 3D model rendering
+  - 🖱️ Intuitive orbit controls for navigation
+  - 🌆 Dynamic lighting and shadows
+  - 📐 Measurement tools for scale analysis
+  - 🖌️ Custom material and texture support
+
+- **Try It Now**: <a href="https://crwg.github.io/arch/" target="_blank">Explore Architecture! 🏗️</a>
+- **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/arch" target="_blank">Source Code 📂</a>
+
+<p align="center">
+  <a href="https://crwg.github.io/arch/" target="_blank">
+    <img src="assets/arch-hero.gif" alt="Architectural Viewer" width="600" style="border-radius: 15px; box-shadow: 0 6px 20px rgba(0, 100, 0, 0.3);"/>
+  </a>
+</p>
+
+<p align="center">
+  <a href="assets/arch.jpg" target="_blank">
+    <img src="assets/arch.jpg" alt="Architecture Screenshot" width="400" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
+  </a>
+</p>
 
 ### 🎴 BlackJack WebGame
 A thrilling, fully interactive built with pure JavaScript. Face off against cunning AI opponents, marvel at silky-smooth card animations, and feel the casino vibe from your browser.
