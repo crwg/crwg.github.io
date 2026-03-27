@@ -4,21 +4,6 @@
 
 <h1 align="center">Personal Web Lab</h1>
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108265387', 'ym');
-
-    ym(108265387, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/108265387" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-
-
 <p align="center">
   <a href="https://github.com/crwg/crwg.github.io/stargazers" target="_blank"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=for-the-badge&color=FFD700" alt="GitHub Stars"></a>
   <a href="https://github.com/crwg/crwg.github.io/network" target="_blank"><img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=for-the-badge&color=00CED1" alt="GitHub Forks"></a>
