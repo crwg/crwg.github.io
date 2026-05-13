@@ -20,7 +20,7 @@
   <a href="#"><img src="https://img.shields.io/github/last-commit/crwg/crwg.github.io?color=8A2BE2" alt="Last Commit"></a>
 </p>
 
-My other games :
+My other links :
 
 https://crwg.github.io/portfolio/design/test-card-1/index.html
 
