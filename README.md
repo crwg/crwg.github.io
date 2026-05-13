@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.jpg" alt="CRWG Creations Logo" width="640" style="pointer-events: none;border-radius: 20px; box-shadow: 0 4px 12px rgba(0, 0, 255, 0.3);"/>
+  <img src="assets/logo.jpg" alt="CRWG Creations Logo" width="640" style="pointer-events: none; border-radius: 20px; box-shadow: 0 4px 12px rgba(0, 0, 255, 0.3);"/>
 </p>
 
 <h1 align="center">Personal Web Lab</h1>
@@ -20,20 +20,46 @@
   <a href="#"><img src="https://img.shields.io/github/last-commit/crwg/crwg.github.io?color=8A2BE2" alt="Last Commit"></a>
 </p>
 
-My other links :
+---
 
-https://crwg.github.io/portfolio/design/test-card-1/index.html
+## 📑 Table of Contents
+- [🔗 My Other Links](#-my-other-links)
+- [🌌 Welcome to the Experience](#-welcome-to-the-experience)
+  - [🏛️ Architectural Viewer](#️-architectural-viewer)
+  - [🎴 BlackJack WebGame](#-blackjack-webgame)
+  - [🌧️ Matrix Digital Rain](#️-matrix-digital-rain)
+- [🚀 Get Started in Seconds](#-get-started-in-seconds)
 
-https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html
+---
 
+## 🔗 My Other Links
+
+Here are a couple more experiments and side projects – each a little gem of its own:
+
+<table align="center">
+  <tr>
+    <td align="center" width="400">
+      <a href="https://crwg.github.io/portfolio/design/test-card-1/index.html" target="_blank">
+        <img src="https://img.shields.io/badge/Test_Card_1-Design_Playground-ff69b4?style=for-the-badge&logo=html5&logoColor=white" alt="Test Card 1"><br>
+        <sub>🖼️ A sleek interactive card component with modern CSS tricks and smooth transitions.</sub>
+      </a>
+    </td>
+    <td align="center" width="400">
+      <a href="https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html" target="_blank">
+        <img src="https://img.shields.io/badge/BlackJack_Pixel_Art-Retro_Game-8B4513?style=for-the-badge&logo=godotengine&logoColor=white" alt="BlackJack Pixel Art"><br>
+        <sub>🃏 Classic Blackjack reimagined with charming pixel graphics and old‑school vibes.</sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ---
 
 ## 🌌 Welcome to the Experience
 
-Dive into a world of interactive web magic with two handcrafted projects designed to entertain and inspire.
+Dive into a world of interactive web magic with three handcrafted projects designed to entertain and inspire.
 
-## 🏛️ Architectural Viewer
+### 🏛️ Architectural Viewer
 An immersive 3D visualization tool for exploring architectural designs with photorealistic rendering and interactive controls.
 
 - **Highlights**:
@@ -43,8 +69,6 @@ An immersive 3D visualization tool for exploring architectural designs with phot
   - 📐 Measurement tools for scale analysis
   - 🖌️ Custom material and texture support
 
-- **Try It Now**: <a href="https://crwg.github.io/arch/" target="_blank">Explore Architecture! 🏗️</a>
-- **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/arch" target="_blank">Source Code 📂</a>
 <p align="center">
   <a href="https://crwg.github.io/arch/" target="_blank">
     <img src="assets/arch-hero.gif" alt="Architectural Viewer" width="600" style="border-radius: 15px; box-shadow: 0 6px 20px rgba(0, 100, 0, 0.3);"/>
@@ -52,13 +76,18 @@ An immersive 3D visualization tool for exploring architectural designs with phot
 </p>
 
 <p align="center">
-  <a a href="https://crwg.github.io/arch/" target="_blank">
+  <a href="https://crwg.github.io/arch/" target="_blank">
     <img src="assets/arch.jpg" alt="Architecture Screenshot" width="600" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
   </a>
 </p>
 
+- **Try It Now**: <a href="https://crwg.github.io/arch/" target="_blank">Explore Architecture! 🏗️</a>
+- **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/arch" target="_blank">Source Code 📂</a>
+
+---
+
 ### 🎴 BlackJack WebGame
-A thrilling, fully interactive built with pure JavaScript. Face off against cunning AI opponents, marvel at silky-smooth card animations, and feel the casino vibe from your browser.
+A thrilling, fully interactive card game built with pure JavaScript. Face off against cunning AI opponents, marvel at silky‑smooth card animations, and feel the casino vibe right from your browser.
 
 - **Highlights**:
   - 🃏 Authentic BlackJack gameplay
@@ -66,9 +95,6 @@ A thrilling, fully interactive built with pure JavaScript. Face off against cunn
   - 🎰 Stunning card animations
   - 📱 Responsive for desktop and mobile
   - ⚙️ Customize blinds, players, and more
-
-- **Try It Now**: <a href="https://crwg.github.io/poker/" target="_blank">Play BlackJack! 🎲</a>
-- **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/poker" target="_blank">Source Code 📂</a>
 
 <p align="center">
   <a href="https://crwg.github.io/poker/" target="_blank">
@@ -82,18 +108,20 @@ A thrilling, fully interactive built with pure JavaScript. Face off against cunn
   </a>
 </p>
 
+- **Try It Now**: <a href="https://crwg.github.io/poker/" target="_blank">Play BlackJack! 🎲</a>
+- **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/poker" target="_blank">Source Code 📂</a>
+
+---
+
 ### 🌧️ Matrix Digital Rain
-A hypnotic immersive **digital rain** animation inspired by *The Matrix*. Powered by HTML5 Canvas, this project delivers cyberpunk vibes with cascading characters that dance across your screen.
+A hypnotic, immersive **digital rain** animation inspired by *The Matrix*. Powered by HTML5 Canvas, this project delivers cyberpunk vibes with cascading characters that dance across your screen.
 
 - **Highlights**:
   - 🌌 Randomized, fluid character rain
   - 🎨 Customizable colors, speed, and density
-  - ⚡ Optimized for buttery-smooth performance
+  - ⚡ Optimized for buttery‑smooth performance
   - 📱 Scales beautifully on any device
   - 🖼️ Ideal for backgrounds or art installations
-
-- **Try It Now**: <a href="https://crwg.github.io/matrix/" target="_blank">Enter the Matrix! 💾</a>
-- **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/matrix" target="_blank">Source Code 📂</a>
 
 <p align="center">
   <a href="https://crwg.github.io/matrix/" target="_blank">
@@ -106,13 +134,19 @@ A hypnotic immersive **digital rain** animation inspired by *The Matrix*. Powere
     <img src="assets/matrix.jpg" alt="Matrix Screenshot" width="600" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
   </a>
 </p>
-Alright, alright, alright ...
+
+- **Try It Now**: <a href="https://crwg.github.io/matrix/" target="_blank">Enter the Matrix! 💾</a>
+- **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/matrix" target="_blank">Source Code 📂</a>
+
+---
+
+*Alright, alright, alright ...*
 
 ---
 
 ## 🚀 Get Started in Seconds
 
-Ready to play or hack? Here's how to run these projects locally:
+Ready to play or hack? Here’s how to run these projects locally:
 
 1. **Clone the Repo**:
    ```bash
