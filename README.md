@@ -20,6 +20,13 @@
   <a href="#"><img src="https://img.shields.io/github/last-commit/crwg/crwg.github.io?color=8A2BE2" alt="Last Commit"></a>
 </p>
 
+My other games :
+
+https://crwg.github.io/portfolio/design/test-card-1/index.html
+
+https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html
+
+
 ---
 
 ## 🌌 Welcome to the Experience
