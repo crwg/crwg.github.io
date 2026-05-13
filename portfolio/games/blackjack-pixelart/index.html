@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Blackjack in the browser: balance, keyboard shortcuts, retro table."
+    />
+    <meta id="theme-color-meta" name="theme-color" content="#020806" />
+    <meta name="color-scheme" content="dark" />
+    <title>Blackjack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Press Start 2P — SIL Open Font License 1.1 (Google Fonts) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" crossorigin src="./assets/index-DbhPcGhN.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-74xS3bAT.css">
+  </head>
+  <body>
+    <main id="app" class="app">
+      <button
+        type="button"
+        id="settings-backdrop"
+        class="settings-backdrop hidden"
+        aria-hidden="true"
+        tabindex="-1"
+      ></button>
+      <div
+        id="settings-panel"
+        class="side-panel hidden"
+        role="dialog"
+        aria-modal="false"
+        aria-labelledby="settings-heading"
+        aria-hidden="true"
+      ></div>
+
+      <div id="confirm-dialog-root" class="confirm-dialog-root hidden">
+        <button
+          type="button"
+          id="confirm-dialog-backdrop"
+          class="confirm-dialog-backdrop"
+          aria-hidden="true"
+          tabindex="-1"
+        ></button>
+        <div
+          id="confirm-dialog-panel"
+          class="confirm-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="confirm-dialog-title"
+          aria-describedby="confirm-dialog-message"
+          aria-hidden="true"
+        >
+          <h2 id="confirm-dialog-title" class="confirm-dialog__title"></h2>
+          <p id="confirm-dialog-message" class="confirm-dialog__message"></p>
+          <div class="confirm-dialog__actions">
+            <button type="button" id="confirm-dialog-cancel" class="confirm-dialog__btn confirm-dialog__btn--secondary"></button>
+            <button type="button" id="confirm-dialog-confirm" class="confirm-dialog__btn confirm-dialog__btn--primary"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-table" role="region">
+        <header class="table-toolbar" role="banner">
+          <div
+            class="table-hud__chip table-hud__chip--message table-toolbar__ticker-chip"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <div class="toolbar-ticker__viewport">
+              <p id="message-area" class="table-hud__callout toolbar-ticker__strip hidden" aria-hidden="true"></p>
+            </div>
+          </div>
+          <div class="table-toolbar__chrome">
+            <div class="table-toolbar__lead">
+              <h1 class="table-toolbar__brand" id="felt-blackjack"></h1>
+            </div>
+            <div class="table-toolbar__trail">
+              <div class="table-toolbar__metrics">
+                <p id="stake-metric" class="toolbar-metric toolbar-metric--stake">
+                  <span id="stake-label" class="toolbar-metric__label"></span>
+                  <span class="toolbar-metric__value" aria-labelledby="stake-label">
+                    <span id="stake-display" class="toolbar-stake-display">
+                      <span aria-hidden="true">$</span
+                      ><span id="stake-amount" aria-live="polite">10</span>
+                    </span>
+                  </span>
+                </p>
+                <p class="toolbar-metric toolbar-metric--balance">
+                  <span id="balance-label" class="toolbar-metric__label"></span>
+                  <span class="toolbar-metric__value" aria-labelledby="balance-label">
+                    <span aria-hidden="true">$</span><span id="balance" aria-live="polite">1000</span>
+                  </span>
+                </p>
+                <p class="toolbar-metric toolbar-metric--deck" id="toolbar-deck-metric">
+                  <span id="deck-remaining-label" class="toolbar-metric__label"></span>
+                  <span class="toolbar-metric__value" aria-labelledby="deck-remaining-label">
+                    <span id="betting-deck-count" aria-live="polite">312</span>
+                  </span>
+                </p>
+              </div>
+              <div class="table-toolbar__tools">
+                <button
+                  type="button"
+                  id="toggle-settings"
+                  class="settings-btn"
+                  aria-label="Settings"
+                  aria-expanded="false"
+                  aria-controls="settings-panel"
+                >
+                  <span class="settings-btn__hamburger" aria-hidden="true">
+                    <span class="settings-btn__bar"></span>
+                    <span class="settings-btn__bar"></span>
+                    <span class="settings-btn__bar"></span>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="table-zone table-zone--dealer">
+          <div class="hand-board hand-board--dealer-play">
+            <div class="hand-board__dealer-column hand-spotlight-host">
+              <div
+                id="dealer-hand-spotlight"
+                class="hand-spotlight"
+                aria-hidden="true"
+              ></div>
+              <div
+                class="table-hud__chip table-hud__chip--dealer"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <p id="dealer-score" class="table-hud__total-value hidden"></p>
+              </div>
+              <div id="dealer-hand" class="hand" role="group"></div>
+            </div>
+          </div>
+        </section>
+
+        <div class="table-hud table-hud--betting-slot" aria-hidden="false">
+          <div id="betting-idle-root" class="betting-idle hidden" aria-hidden="true">
+            <div class="betting-idle__stage">
+              <div id="betting-idle-fan" class="betting-idle__fan">
+                <div class="betting-idle__card" style="--idle-i: 0">
+                  <div class="betting-idle__flip">
+                    <div class="betting-idle__face betting-idle__face--back" aria-hidden="true"></div>
+                    <div class="betting-idle__face betting-idle__face--front" aria-hidden="true"></div>
+                  </div>
+                </div>
+                <div class="betting-idle__card" style="--idle-i: 1">
+                  <div class="betting-idle__flip">
+                    <div class="betting-idle__face betting-idle__face--back" aria-hidden="true"></div>
+                    <div class="betting-idle__face betting-idle__face--front" aria-hidden="true"></div>
+                  </div>
+                </div>
+                <div class="betting-idle__card" style="--idle-i: 2">
+                  <div class="betting-idle__flip">
+                    <div class="betting-idle__face betting-idle__face--back" aria-hidden="true"></div>
+                    <div class="betting-idle__face betting-idle__face--front" aria-hidden="true"></div>
+                  </div>
+                </div>
+                <div class="betting-idle__card" style="--idle-i: 3">
+                  <div class="betting-idle__flip">
+                    <div class="betting-idle__face betting-idle__face--back" aria-hidden="true"></div>
+                    <div class="betting-idle__face betting-idle__face--front" aria-hidden="true"></div>
+                  </div>
+                </div>
+                <div class="betting-idle__card" style="--idle-i: 4">
+                  <div class="betting-idle__flip">
+                    <div class="betting-idle__face betting-idle__face--back" aria-hidden="true"></div>
+                    <div class="betting-idle__face betting-idle__face--front" aria-hidden="true"></div>
+                  </div>
+                </div>
+                <div class="betting-idle__card" style="--idle-i: 5">
+                  <div class="betting-idle__flip">
+                    <div class="betting-idle__face betting-idle__face--back" aria-hidden="true"></div>
+                    <div class="betting-idle__face betting-idle__face--front" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="table-zone table-zone--player">
+          <div class="player-hands-strip">
+            <button
+              type="button"
+              id="hand-nav-prev"
+              class="hand-nav hidden"
+              aria-controls="player-hands"
+            >
+              <span class="hand-nav__glyph" aria-hidden="true">‹</span>
+            </button>
+            <div id="player-hands" class="hands-container"></div>
+            <button
+              type="button"
+              id="hand-nav-next"
+              class="hand-nav hidden"
+              aria-controls="player-hands"
+            >
+              <span class="hand-nav__glyph" aria-hidden="true">›</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="table-zone table-zone--actions">
+          <div id="control-dock" class="control-dock control-dock--empty">
+            <div class="controls">
+              <div id="betting-controls" class="controls__row hidden">
+                <p id="planned-stake-display" class="betting-hero hidden" aria-live="polite"></p>
+                <button type="button" id="place-bet" class="btn-action btn-action--bet"></button>
+                <div id="betting-modifiers">
+                  <button type="button" id="decrease-bet" class="btn-icon"></button>
+                  <button type="button" id="increase-bet" class="btn-icon"></button>
+                  <button type="button" id="double-bet" class="btn-bet-adjust"></button>
+                  <button type="button" id="reset-bet" class="btn-bet-adjust"></button>
+                  <button type="button" id="max-bet" class="btn-bet-adjust"></button>
+                </div>
+              </div>
+              <div id="action-controls" class="controls__row hidden">
+                <button type="button" id="hit-btn" class="btn-action btn-action--hit"></button>
+                <button type="button" id="stand-btn" class="btn-action btn-action--stand"></button>
+                <button type="button" id="double-btn" class="btn-action btn-action--double"></button>
+                <button type="button" id="split-btn" class="btn-action btn-action--split hidden"></button>
+                <button type="button" id="insurance-btn" class="btn-action btn-action--insurance hidden"></button>
+                <button
+                  type="button"
+                  id="decline-insurance-btn"
+                  class="btn-action btn-action--decline-insurance hidden"
+                ></button>
+              </div>
+              <div id="round-end-controls" class="controls__row hidden">
+                <button type="button" id="deal-same-btn" class="btn-action btn-action--next hidden"></button>
+                <button
+                  type="button"
+                  id="change-bet-btn"
+                  class="btn-action btn-action--secondary-outline hidden"
+                ></button>
+                <button type="button" id="reset-progress" class="btn-action btn-action--reset hidden"></button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div
+          id="kbd-hint-root"
+          class="kbd-hint hidden"
+          role="complementary"
+          aria-hidden="true"
+        >
+          <div id="kbd-hint-panel" class="kbd-hint__panel">
+            <div class="kbd-hint__header">
+              <span id="kbd-hint-title" class="kbd-hint__title"></span>
+              <button type="button" id="kbd-hint-hide" class="kbd-hint__hide"></button>
+            </div>
+            <div class="kbd-hint__sections">
+              <section
+                class="kbd-hint__section"
+                id="kbd-hint-shortcuts-section"
+                aria-labelledby="kbd-hint-shortcuts-heading"
+              >
+                <h3 id="kbd-hint-shortcuts-heading" class="kbd-hint__subhead"></h3>
+                <p id="kbd-hint-body" class="kbd-hint__body"></p>
+              </section>
+              <section class="kbd-hint__section" aria-labelledby="kbd-hint-rules-heading">
+                <h3 id="kbd-hint-rules-heading" class="kbd-hint__subhead"></h3>
+                <ul
+                  id="kbd-hint-rules-list"
+                  class="kbd-hint__list"
+                  aria-labelledby="kbd-hint-rules-heading"
+                ></ul>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+    <noscript>
+      <p
+        lang="en"
+        style="margin: 0; padding: 1rem; font-family: system-ui, sans-serif; background: #131b28; color: #f8f5ec"
+      >
+        This game needs JavaScript. Open the app via <code>npm run dev</code> or <code>npm run preview</code>, not as a
+        raw <code>file://</code> page (modules may be blocked).
+      </p>
+    </noscript>
+  </body>
+</html>
