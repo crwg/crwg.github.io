@@ -71,11 +71,11 @@ canvas‑based digital rain. katakana & latin glyphs, variable speed / density /
 ---
 
 ### side experiments
+<img src="assets/pocpix.jpg" alt="matrix rain still" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+[test card](https://crwg.github.io/portfolio/design/test-card-1/index.html) | `design playground` – css transitions & layered layout
+  
 
-| [test card](https://crwg.github.io/portfolio/design/test-card-1/index.html) | `design playground` – css transitions & layered layout |
-  <img src="assets/pocpix.jpg" alt="matrix rain still" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
-
-| [pixel‑art blackjack](https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html) | `retro game` – 8‑bit visuals, old‑school ui |
+[pixel‑art blackjack](https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html) | `retro game` – 8‑bit visuals, old‑school ui
 
 ---
 
