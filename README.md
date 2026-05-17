@@ -78,6 +78,10 @@ canvas‑based digital rain. katakana & latin glyphs, variable speed / density /
 <p align="center">
 <img src="assets/pocpix.jpg" alt="matrix rain still" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
 [pixel‑art blackjack](https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html) | `retro game` – 8‑bit visuals, old‑school ui
+
+   <br/>
+  <sub>live: <a href="https://crwg.github.io/arch/>retro blackjack 8‑bit visuals</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio">/arch</a></sub>
+</p>
 </p>
 
 
