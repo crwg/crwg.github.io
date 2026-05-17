@@ -1,154 +1,78 @@
 <p align="center">
-  <img src="assets/logo.jpg" alt="CRWG Creations Logo" width="640" style="pointer-events: none; border-radius: 20px; box-shadow: 0 4px 12px rgba(0, 0, 255, 0.3);"/>
+  <img src="assets/logo.jpg" alt="CRWG Creations" width="480" style="pointer-events: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
 </p>
 
-<h1 align="center">Personal Web Lab</h1>
+<h1 align="center">~/lab</h1>
 
 <p align="center">
-  <a href="https://github.com/crwg/crwg.github.io/stargazers" target="_blank"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=for-the-badge&color=FFD700" alt="GitHub Stars"></a>
-  <a href="https://github.com/crwg/crwg.github.io/network" target="_blank"><img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=for-the-badge&color=00CED1" alt="GitHub Forks"></a>
-  <a href="https://github.com/crwg/crwg.github.io/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/badge/License-MIT-4169E1?style=for-the-badge" alt="MIT License"></a>
-  <a href="https://crwg.github.io/poker/" target="_blank"><img src="https://img.shields.io/badge/Live_Demo-Poker-FF4500?style=for-the-badge&logo=gamepad" alt="Poker Demo"></a>
-  <a href="https://crwg.github.io/matrix/" target="_blank"><img src="https://img.shields.io/badge/Live_Demo-Matrix-32CD32?style=for-the-badge&logo=code" alt="Matrix Demo"></a>
-  <a href="https://crwg.github.io/arch/" target="_blank"><img src="https://img.shields.io/badge/Live_Demo-Architecture-006400?style=for-the-badge&logo=map" alt="Arch Viewer Demo"></a>
+  <a href="https://github.com/crwg/crwg.github.io/stargazers"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=flat&color=555" alt="stars"></a>
+  <a href="https://github.com/crwg/crwg.github.io/network"><img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=flat&color=555" alt="forks"></a>
+  <a href="https://github.com/crwg/crwg.github.io/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-555?style=flat" alt="license"></a>
+  <a href="https://crwg.github.io/poker/"><img src="https://img.shields.io/badge/demo-poker-555?style=flat" alt="poker"></a>
+  <a href="https://crwg.github.io/matrix/"><img src="https://img.shields.io/badge/demo-matrix-555?style=flat" alt="matrix"></a>
+  <a href="https://crwg.github.io/arch/"><img src="https://img.shields.io/badge/demo-arch_viewer-555?style=flat" alt="arch"></a>
 </p>
 
 <p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript" alt="JavaScript"></a>
-  <a href="#"><img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5" alt="HTML5"></a>
-  <a href="#"><img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3" alt="CSS3"></a>
-  <a href="#"><img src="https://img.shields.io/github/last-commit/crwg/crwg.github.io?color=8A2BE2" alt="Last Commit"></a>
+  <sub>hand-rolled js | no frameworks | vanilla html5 canvas & webgl</sub>
 </p>
 
 ---
 
-## 📑 Table of Contents
-- [🔗 My Other Links](#-my-other-links)
-- [🌌 Welcome to the Experience](#-welcome-to-the-experience)
-  - [🏛️ Architectural Viewer](#️-architectural-viewer)
-  - [🎴 BlackJack WebGame](#-blackjack-webgame)
-  - [🌧️ Matrix Digital Rain](#️-matrix-digital-rain)
-- [🚀 Get Started in Seconds](#-get-started-in-seconds)
+### [ Gaussian Splat Viewer ]
+**live:** [crwg.github.io/portfolio/GaussianSplat/](https://crwg.github.io/portfolio/GaussianSplat/)  
+*borrowed from [nazarskalskyi](https://superspl.at/scene/e720a778) — full credit to his original scene & tooling.*
 
 ---
 
-## 🔗 My Other Links
+## projects / проекты
 
-Here are a couple more experiments and side projects – each a little gem of its own:
+### arch viewer / архитектурный просмотрщик
+**en:** local‑first 3d model viewer. orbit controls, dynamic shadows, measurement tools. all rendering done on‑device.  
+**ru:** автономный 3d‑просмотрщик. орбитальное управление, динамические тени, инструменты измерения. рендеринг на устройстве.
 
-<table align="center">
-  <tr>
-    <td align="center" width="400">
-      <a href="https://crwg.github.io/portfolio/design/test-card-1/index.html" target="_blank">
-        <img src="https://img.shields.io/badge/Test_Card_1-Design_Playground-ff69b4?style=for-the-badge&logo=html5&logoColor=white" alt="Test Card 1"><br>
-        <sub>🖼️ A sleek interactive card component with modern CSS tricks and smooth transitions.</sub>
-      </a>
-    </td>
-    <td align="center" width="400">
-      <a href="https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html" target="_blank">
-        <img src="https://img.shields.io/badge/BlackJack_Pixel_Art-Retro_Game-8B4513?style=for-the-badge&logo=godotengine&logoColor=white" alt="BlackJack Pixel Art"><br>
-        <sub>🃏 Classic Blackjack reimagined with charming pixel graphics and old‑school vibes.</sub>
-      </a>
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="assets/arch-hero.gif" alt="arch viewer" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <br/>
+  <sub>live: <a href="https://crwg.github.io/arch/">crwg.github.io/arch</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/arch">/arch</a></sub>
+</p>
 
 ---
 
-## 🌌 Welcome to the Experience
-
-Dive into a world of interactive web magic with three handcrafted projects designed to entertain and inspire.
-
-### 🏛️ Architectural Viewer
-An immersive 3D visualization tool for exploring architectural designs with photorealistic rendering and interactive controls.
-
-- **Highlights**:
-  - 🏙️ Real-time 3D model rendering
-  - 🖱️ Intuitive orbit controls for navigation
-  - 🌆 Dynamic lighting and shadows
-  - 📐 Measurement tools for scale analysis
-  - 🖌️ Custom material and texture support
+### blackjack / блекджек
+**en:** pure js card game. ai dealer, smooth flip animations, mobile‑ready layout. configurable rules.  
+**ru:** карточная игра на чистом js. компьютерный дилер, плавная анимация, адаптивная вёрстка. настраиваемые правила.
 
 <p align="center">
-  <a href="https://crwg.github.io/arch/" target="_blank">
-    <img src="assets/arch-hero.gif" alt="Architectural Viewer" width="600" style="border-radius: 15px; box-shadow: 0 6px 20px rgba(0, 100, 0, 0.3);"/>
-  </a>
+  <img src="assets/poker-hero.gif" alt="blackjack" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <br/>
+  <sub>live: <a href="https://crwg.github.io/poker/">crwg.github.io/poker</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/poker">/poker</a></sub>
 </p>
-
-<p align="center">
-  <a href="https://crwg.github.io/arch/" target="_blank">
-    <img src="assets/arch.jpg" alt="Architecture Screenshot" width="600" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
-  </a>
-</p>
-
-- **Try It Now**: <a href="https://crwg.github.io/arch/" target="_blank">Explore Architecture! 🏗️</a>
-- **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/arch" target="_blank">Source Code 📂</a>
 
 ---
 
-### 🎴 BlackJack WebGame
-A thrilling, fully interactive card game built with pure JavaScript. Face off against cunning AI opponents, marvel at silky‑smooth card animations, and feel the casino vibe right from your browser.
-
-- **Highlights**:
-  - 🃏 Authentic BlackJack gameplay
-  - 🤖 Smart AI
-  - 🎰 Stunning card animations
-  - 📱 Responsive for desktop and mobile
-  - ⚙️ Customize blinds, players, and more
+### matrix rain / матричный дождь
+**en:** canvas‑based digital rain. katakana & latin glyphs, variable speed / density / color. runs smooth at 60fps.  
+**ru:** цифровой дождь на canvas. символы катаканы и латиницы, настройка скорости, плотности и цвета. стабильные 60 кадров/с.
 
 <p align="center">
-  <a href="https://crwg.github.io/poker/" target="_blank">
-    <img src="assets/poker-hero.gif" alt="BlackJack Game" width="600" style="border-radius: 15px; box-shadow: 0 6px 20px rgba(255, 69, 0, 0.3);"/>
-  </a>
+  <img src="assets/matrix-hero.gif" alt="matrix rain" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <br/>
+  <sub>live: <a href="https://crwg.github.io/matrix/">crwg.github.io/matrix</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/matrix">/matrix</a></sub>
 </p>
-
-<p align="center">
-  <a href="https://crwg.github.io/poker" target="_blank">
-    <img src="assets/poker.jpg" alt="BlackJack Screenshot" width="600" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
-  </a>
-</p>
-
-- **Try It Now**: <a href="https://crwg.github.io/poker/" target="_blank">Play BlackJack! 🎲</a>
-- **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/poker" target="_blank">Source Code 📂</a>
 
 ---
 
-### 🌧️ Matrix Digital Rain
-A hypnotic, immersive **digital rain** animation inspired by *The Matrix*. Powered by HTML5 Canvas, this project delivers cyberpunk vibes with cascading characters that dance across your screen.
+### side experiments / побочные эксперименты
 
-- **Highlights**:
-  - 🌌 Randomized, fluid character rain
-  - 🎨 Customizable colors, speed, and density
-  - ⚡ Optimized for buttery‑smooth performance
-  - 📱 Scales beautifully on any device
-  - 🖼️ Ideal for backgrounds or art installations
-
-<p align="center">
-  <a href="https://crwg.github.io/matrix/" target="_blank">
-    <img src="assets/matrix-hero.gif" alt="Matrix Hero" width="600" style="border-radius: 15px; box-shadow: 0 6px 20px rgba(50, 205, 50, 0.3);"/>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://crwg.github.io/matrix" target="_blank">
-    <img src="assets/matrix.jpg" alt="Matrix Screenshot" width="600" style="border-radius: 10px; margin: 10px; border: 1px solid #aaa;"/>
-  </a>
-</p>
-
-- **Try It Now**: <a href="https://crwg.github.io/matrix/" target="_blank">Enter the Matrix! 💾</a>
-- **Explore Code**: <a href="https://github.com/crwg/crwg.github.io/tree/master/matrix" target="_blank">Source Code 📂</a>
+| [test card](https://crwg.github.io/portfolio/design/test-card-1/index.html) | `design playground` – css transitions & layered layout |
+| [pixel‑art blackjack](https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html) | `retro game` – 8‑bit visuals, old‑school ui |
 
 ---
 
-*Alright, alright, alright ...*
+## run local / локальный запуск
 
----
-
-## 🚀 Get Started in Seconds
-
-Ready to play or hack? Here’s how to run these projects locally:
-
-1. **Clone the Repo**:
-   ```bash
-   git clone https://github.com/crwg/crwg.github.io.git
-   cd crwg.github.io
+```bash
+git clone https://github.com/crwg/crwg.github.io.git
+cd crwg.github.io
+# open any folder in browser, no build step needed
