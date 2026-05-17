@@ -21,7 +21,7 @@
 
 ---
 
-### [ Simple Gaussian Splat Viewer Preset ]
+### Simple Gaussian Splat Viewer Preset
 <img src="assets/splat.gif" alt="arch viewer animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
 
 **live:** [crwg.github.io/portfolio/GaussianSplat/](https://crwg.github.io/portfolio/GaussianSplat/)  
@@ -31,7 +31,7 @@
 
 ## projects
 
-### arch viewer
+### Arch viewer
 local‑first 3d model viewer. orbit controls, dynamic shadows, measurement tools. all rendering done on‑device.
 
 <p align="center">
@@ -44,7 +44,7 @@ local‑first 3d model viewer. orbit controls, dynamic shadows, measurement tool
 
 ---
 
-### blackjack
+### Blackjack
 pure js card game. ai dealer, smooth flip animations, mobile‑ready layout. configurable rules.
 
 <p align="center">
@@ -57,7 +57,7 @@ pure js card game. ai dealer, smooth flip animations, mobile‑ready layout. con
 
 ---
 
-### matrix rain
+### Matrix rain
 canvas‑based digital rain. katakana & latin glyphs, variable speed / density / color. runs smooth at 60fps.
 
 <p align="center">
@@ -70,7 +70,7 @@ canvas‑based digital rain. katakana & latin glyphs, variable speed / density /
 
 ---
 
-### test card
+### yet another Blackjack card
 `design playground` – css transitions, layered layout, modern card component.
 
 <p align="center">
@@ -81,7 +81,7 @@ canvas‑based digital rain. katakana & latin glyphs, variable speed / density /
 
 ---
 
-### pixel‑art blackjack
+### Pixel‑art Blackjack (better rules)
 `retro game` – 8‑bit visuals, old‑school ui. classic blackjack with chunky pixels.
 
 <p align="center">
