@@ -5,6 +5,8 @@
 <h1 align="center">~/lab</h1>
 
 <p align="center">
+  <a href="README_RU.md">🇷🇺 по-русски</a>
+  &nbsp;·&nbsp;
   <a href="https://github.com/crwg/crwg.github.io/stargazers"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=flat&color=555" alt="stars"></a>
   <a href="https://github.com/crwg/crwg.github.io/network"><img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=flat&color=555" alt="forks"></a>
   <a href="https://github.com/crwg/crwg.github.io/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-555?style=flat" alt="license"></a>
@@ -21,56 +23,59 @@
 
 ### [ Gaussian Splat Viewer ]
 **live:** [crwg.github.io/portfolio/GaussianSplat/](https://crwg.github.io/portfolio/GaussianSplat/)  
-*borrowed from [nazarskalskyi](https://superspl.at/scene/e720a778) — full credit to his original ply scan.*
+*borrowed from [nazarskalskyi](https://superspl.at/scene/e720a778) — full credit to his original scene & tooling.*
 
 ---
 
-## projects / проекты
+## projects
 
-### arch viewer / архитектурный просмотрщик
-**en:** local‑first 3d model viewer. orbit controls, dynamic shadows, measurement tools. all rendering done on‑device.  
-**ru:** автономный 3d‑просмотрщик. орбитальное управление, динамические тени, инструменты измерения. рендеринг на устройстве.
+### arch viewer
+local‑first 3d model viewer. orbit controls, dynamic shadows, measurement tools. all rendering done on‑device.
 
 <p align="center">
-  <img src="assets/arch-hero.gif" alt="arch viewer" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <img src="assets/arch-hero.gif" alt="arch viewer animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <br/>
+  <img src="assets/arch.jpg" alt="arch viewer still" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
   <sub>live: <a href="https://crwg.github.io/arch/">crwg.github.io/arch</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/arch">/arch</a></sub>
 </p>
 
 ---
 
-### blackjack / блекджек
-**en:** pure js card game. ai dealer, smooth flip animations, mobile‑ready layout. configurable rules.  
-**ru:** карточная игра на чистом js. компьютерный дилер, плавная анимация, адаптивная вёрстка. настраиваемые правила.
+### blackjack
+pure js card game. ai dealer, smooth flip animations, mobile‑ready layout. configurable rules.
 
 <p align="center">
-  <img src="assets/poker-hero.gif" alt="blackjack" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <img src="assets/poker-hero.gif" alt="blackjack animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <br/>
+  <img src="assets/poker.jpg" alt="blackjack still" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
   <sub>live: <a href="https://crwg.github.io/poker/">crwg.github.io/poker</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/poker">/poker</a></sub>
 </p>
 
 ---
 
-### matrix rain / матричный дождь
-**en:** canvas‑based digital rain. katakana & latin glyphs, variable speed / density / color. runs smooth at 60fps.  
-**ru:** цифровой дождь на canvas. символы катаканы и латиницы, настройка скорости, плотности и цвета. стабильные 60 кадров/с.
+### matrix rain
+canvas‑based digital rain. katakana & latin glyphs, variable speed / density / color. runs smooth at 60fps.
 
 <p align="center">
-  <img src="assets/matrix-hero.gif" alt="matrix rain" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <img src="assets/matrix-hero.gif" alt="matrix rain animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <br/>
+  <img src="assets/matrix.jpg" alt="matrix rain still" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
   <sub>live: <a href="https://crwg.github.io/matrix/">crwg.github.io/matrix</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/matrix">/matrix</a></sub>
 </p>
 
 ---
 
-### side experiments / побочные эксперименты
+### side experiments
 
 | [test card](https://crwg.github.io/portfolio/design/test-card-1/index.html) | `design playground` – css transitions & layered layout |
 | [pixel‑art blackjack](https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html) | `retro game` – 8‑bit visuals, old‑school ui |
 
 ---
 
-## run local / локальный запуск
+## run local
 
 ```bash
 git clone https://github.com/crwg/crwg.github.io.git
