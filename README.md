@@ -21,7 +21,7 @@
 
 ### [ Gaussian Splat Viewer ]
 **live:** [crwg.github.io/portfolio/GaussianSplat/](https://crwg.github.io/portfolio/GaussianSplat/)  
-*borrowed from [nazarskalskyi](https://superspl.at/scene/e720a778) — full credit to his original scene & tooling.*
+*borrowed from [nazarskalskyi](https://superspl.at/scene/e720a778) — full credit to his original ply scan.*
 
 ---
 
