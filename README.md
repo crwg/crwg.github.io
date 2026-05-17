@@ -74,7 +74,7 @@ canvas‑based digital rain. katakana & latin glyphs, variable speed / density /
 `design playground` – css transitions, layered layout, modern card component.
 
 <p align="center">
-  <img src="assets/pocpix.jpg" alt="test card screenshot" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <img src="assets/blackjack-pixel.jpg" alt="pixel-art blackjack screenshot" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
   <sub>live: <a href="https://crwg.github.io/portfolio/design/test-card-1/index.html">crwg.github.io/.../test-card-1</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio/design/test-card-1">/portfolio/design/test-card-1</a></sub>
 </p>
@@ -85,7 +85,8 @@ canvas‑based digital rain. katakana & latin glyphs, variable speed / density /
 `retro game` – 8‑bit visuals, old‑school ui. classic blackjack with chunky pixels.
 
 <p align="center">
-  <img src="assets/blackjack-pixel.jpg" alt="pixel-art blackjack screenshot" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  
+  <img src="assets/pocpix.jpg" alt="test card screenshot" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
   <sub>live: <a href="https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html">crwg.github.io/.../blackjack-pixelart</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio/games/blackjack-pixelart">/portfolio/games/blackjack-pixelart</a></sub>
 </p>
