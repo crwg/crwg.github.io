@@ -3,9 +3,8 @@
 </p>
 
 <h1 align="center">~/lab</h1>
-
+<a href="README.md">Go to English</a>
 <p align="center">
-  <a href="README.md">🇬🇧 english</a>
   &nbsp;·&nbsp;
   <a href="https://github.com/crwg/crwg.github.io/stargazers"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=flat&color=555" alt="stars"></a>
   <a href="https://github.com/crwg/crwg.github.io/network"><img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=flat&color=555" alt="forks"></a>
