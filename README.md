@@ -3,9 +3,9 @@
 </p>
 
 <h1 align="center">~/lab</h1>
-
+<a href="README_RU.md">Перевод на русском языке</a>
 <p align="center">
-  <a href="README_RU.md">🇷🇺 по-русски</a>
+  
   &nbsp;·&nbsp;
   <a href="https://github.com/crwg/crwg.github.io/stargazers"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=flat&color=555" alt="stars"></a>
   <a href="https://github.com/crwg/crwg.github.io/network"><img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=flat&color=555" alt="forks"></a>
