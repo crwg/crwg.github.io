@@ -69,10 +69,25 @@
 
 ---
 
-### побочные эксперименты
+### test card
+`design playground` – css‑переходы, многослойный макет, современная карточка.
 
-| [test card](https://crwg.github.io/portfolio/design/test-card-1/index.html) | `design playground` – css‑переходы и многослойный макет |
-| [pixel‑art blackjack](https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html) | `retro game` – 8‑битная графика, винтажный интерфейс |
+<p align="center">
+  <img src="assets/pocpix.jpg" alt="скриншот test card" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <br/>
+  <sub>live: <a href="https://crwg.github.io/portfolio/design/test-card-1/index.html">crwg.github.io/.../test-card-1</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio/design/test-card-1">/portfolio/design/test-card-1</a></sub>
+</p>
+
+---
+
+### pixel‑art blackjack
+`retro game` – 8‑битная графика, винтажный интерфейс. классический блекджек в пиксельном стиле.
+
+<p align="center">
+  <img src="assets/blackjack-pixel.jpg" alt="скриншот pixel-art blackjack" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <br/>
+  <sub>live: <a href="https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html">crwg.github.io/.../blackjack-pixelart</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio/games/blackjack-pixelart">/portfolio/games/blackjack-pixelart</a></sub>
+</p>
 
 ---
 
