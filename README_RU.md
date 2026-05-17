@@ -20,7 +20,7 @@
 
 ---
 
-### [ Gaussian Splat Viewer ]
+### [ Гауссиан Сплаттинг предпросмотр ]
 <img src="assets/splat.gif" alt="arch viewer animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
 
 **live:** [crwg.github.io/portfolio/GaussianSplat/](https://crwg.github.io/portfolio/GaussianSplat/)  
