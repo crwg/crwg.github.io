@@ -1,4 +1,3 @@
-# Власов Алексей
 `Systems Architect · Python/TypeScript · Local-First Infrastructure · Deep Learning`
 
 <div align="center">
