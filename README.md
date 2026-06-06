@@ -5,7 +5,6 @@
 <a href="README_RU.md">Russian translation</a>
 
 <p align="center">
-  &nbsp;·&nbsp;
   <a href="https://github.com/crwg/crwg.github.io/stargazers"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=flat&color=555" alt="stars"></a>
   <a href="https://github.com/crwg/crwg.github.io/network"><img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=flat&color=555" alt="forks"></a>
   <a href="https://github.com/crwg/crwg.github.io/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-555?style=flat" alt="license"></a>
