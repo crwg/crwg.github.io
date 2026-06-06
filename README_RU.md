@@ -13,10 +13,6 @@
   <a href="https://crwg.github.io/arch/"><img src="https://img.shields.io/badge/demo-arch_viewer-555?style=flat" alt="arch"></a>
 </p>
 
-<p align="center">
-  <sub>js своейручной сборки | без фреймворков | простой html5 canvas и webgl</sub>
-</p>
-
 ---
 
 ### Простой просмотрщик Gaussian Splat
