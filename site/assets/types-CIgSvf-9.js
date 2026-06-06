@@ -1,1 +1,0 @@
-var e={intro:`intro`,work:`work`,about:`about`,contact:`contact`},t=[e.intro,e.work,e.about,e.contact],n={intro:`air`,work:`content`,about:`stack`,contact:`stack`};function r(e){return`#${e}`}var i=.38,a=.35,o=.12,s=2800,c=[`en`,`ru`],l=`crw-locale`;export{s as a,n as c,l as i,t as l,o as n,i as o,c as r,e as s,a as t,r as u};
