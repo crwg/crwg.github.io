@@ -1,9 +1,11 @@
 <p align="center">
-  <img src="assets/logo.jpg" alt="CRWG Creations" width="480" style="pointer-events: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
+  <img src="resources/logo.jpg" alt="CRWG Creations" width="480" style="pointer-events: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
 </p>
 
 <h1 align="center">~/lab</h1>
-<a href="README.md">Go to English</a>
+
+<a href="README.md">English version</a>
+
 <p align="center">
   &nbsp;·&nbsp;
   <a href="https://github.com/crwg/crwg.github.io/stargazers"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=flat&color=555" alt="stars"></a>
@@ -15,78 +17,84 @@
 </p>
 
 <p align="center">
-  <sub>ручная сборка js | без фреймворков | чистый html5 canvas и webgl</sub>
+  <sub>js своейручной сборки | без фреймворков | простой html5 canvas и webgl</sub>
 </p>
 
 ---
 
-### [ Гауссиан Сплаттинг предпросмотр ]
-<img src="assets/splat.gif" alt="arch viewer animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
+### Простой просмотрщик Gaussian Splat
 
-**live:** [crwg.github.io/portfolio/GaussianSplat/](https://crwg.github.io/portfolio/GaussianSplat/)  
-*позаимствовано у [nazarskalskyi](https://superspl.at/scene/e720a778) — благодарность за исходный скан ply.*
+<img src="resources/splat.gif" alt="анимация splat viewer" width="540" style="border-radius: 8px; opacity:0.9;"/>
+
+**демо:** [crwg.github.io/portfolio/GaussianSplat/](https://crwg.github.io/portfolio/GaussianSplat/)  
+*позаимствовано у [nazarskalskyi](https://superspl.at/scene/e720a778) — вся заслуга за оригинальный ply ему.*
 
 ---
 
 ## проекты
 
-### архитектурный просмотрщик
-автономный 3d‑просмотрщик. орбитальное управление, динамические тени, инструменты измерения. рендеринг на устройстве.
+### Arch viewer
+
+локальный 3d просмотрщик моделей. управление орбитой, динамические тени, инструменты измерений. вся отрисовка выполняется на устройстве.
 
 <p align="center">
-  <img src="assets/arch-hero.gif" alt="анимация arch viewer" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <img src="resources/arch-hero.gif" alt="анимация arch viewer" width="540" style="border-radius: 8px; opacity:0.9;"/>
   <br/>
-  <img src="assets/arch.jpg" alt="скриншот arch viewer" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <img src="resources/arch.jpg" alt="стоп-кадр arch viewer" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
-  <sub>live: <a href="https://crwg.github.io/arch/">crwg.github.io/arch</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/arch">/arch</a></sub>
+  <sub>демо: <a href="https://crwg.github.io/arch/">crwg.github.io/arch</a> | исходники: <a href="https://github.com/crwg/crwg.github.io/tree/master/arch">/arch</a></sub>
 </p>
 
 ---
 
-### блекджек
-карточная игра на чистом js. компьютерный дилер, плавная анимация, адаптивная вёрстка. настраиваемые правила.
+### Blackjack
+
+карточная игра на чистом js. искуственный интеллект дилера, плавные анимации переворота, адаптивная вёрстка. настраиваемые правила.
 
 <p align="center">
-  <img src="assets/poker-hero.gif" alt="анимация blackjack" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <img src="resources/poker-hero.gif" alt="анимация blackjack" width="540" style="border-radius: 8px; opacity:0.9;"/>
   <br/>
-  <img src="assets/poker.jpg" alt="скриншот blackjack" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <img src="resources/poker.jpg" alt="стоп-кадр blackjack" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
-  <sub>live: <a href="https://crwg.github.io/poker/">crwg.github.io/poker</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/poker">/poker</a></sub>
+  <sub>демо: <a href="https://crwg.github.io/poker/">crwg.github.io/poker</a> | исходники: <a href="https://github.com/crwg/crwg.github.io/tree/master/poker">/poker</a></sub>
 </p>
 
 ---
 
-### матричный дождь
-цифровой дождь на canvas. символы катаканы и латиницы, настройка скорости, плотности и цвета. стабильные 60 кадров/с.
+### Matrix rain
+
+цифровой дождь на canvas. символы катаканы и латиницы, регулируемая скорость / плотность / цвет. плавная работа 60fps.
 
 <p align="center">
-  <img src="assets/matrix-hero.gif" alt="анимация matrix rain" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <img src="resources/matrix-hero.gif" alt="анимация matrix rain" width="540" style="border-radius: 8px; opacity:0.9;"/>
   <br/>
-  <img src="assets/matrix.jpg" alt="скриншот matrix rain" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <img src="resources/matrix.jpg" alt="стоп-кадр matrix rain" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
-  <sub>live: <a href="https://crwg.github.io/matrix/">crwg.github.io/matrix</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/matrix">/matrix</a></sub>
+  <sub>демо: <a href="https://crwg.github.io/matrix/">crwg.github.io/matrix</a> | исходники: <a href="https://github.com/crwg/crwg.github.io/tree/master/matrix">/matrix</a></sub>
 </p>
 
 ---
 
-### test card
-`design playground` – css‑переходы, многослойный макет, современная карточка.
+### очередная карта Blackjack
+
+`игровая площадка для дизайна` – css-переходы, многослойная вёрстка, современный карточный компонент.
 
 <p align="center">
-  <img src="assets/pocpix.jpg" alt="скриншот test card" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <img src="resources/card.jpg" alt="скриншот тестовой карты" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
-  <sub>live: <a href="https://crwg.github.io/portfolio/design/test-card-1/index.html">crwg.github.io/.../test-card-1</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio/design/test-card-1">/portfolio/design/test-card-1</a></sub>
+  <sub>демо: <a href="https://crwg.github.io/portfolio/design/test-card-1/index.html">crwg.github.io/.../test-card-1</a> | исходники: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio/design/test-card-1">/portfolio/design/test-card-1</a></sub>
 </p>
 
 ---
 
-### pixel‑art blackjack
-`retro game` – 8‑битная графика, винтажный интерфейс. классический блекджек в пиксельном стиле.
+### Пиксель‑арт Blackjack (улучшенные правила)
+
+`ретро-игра` – 8‑битная графика, староschoolный интерфейс. классический блэкджек с крупными пикселями.
 
 <p align="center">
-  <img src="assets/blackjack-pixel.jpg" alt="скриншот pixel-art blackjack" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <img src="resources/pocpix.jpg" alt="скриншот пиксельного блэкджека" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
-  <sub>live: <a href="https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html">crwg.github.io/.../blackjack-pixelart</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio/games/blackjack-pixelart">/portfolio/games/blackjack-pixelart</a></sub>
+  <sub>демо: <a href="https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html">crwg.github.io/.../blackjack-pixelart</a> | исходники: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio/games/blackjack-pixelart">/portfolio/games/blackjack-pixelart</a></sub>
 </p>
 
 ---
@@ -96,4 +104,4 @@
 ```bash
 git clone https://github.com/crwg/crwg.github.io.git
 cd crwg.github.io
-# открой любую папку в браузере, сборка не нужна
+# открой любую папку в браузере, шаг сборки не нужен
