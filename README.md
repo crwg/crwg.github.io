@@ -2,8 +2,6 @@
   <img src="resources/logo.jpg" alt="CRWG Creations" width="480" style="pointer-events: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
 </p>
 
-<h1 align="center">~/lab</h1>
-
 <a href="README_RU.md">Russian translation</a>
 
 <p align="center">
