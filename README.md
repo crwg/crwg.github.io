@@ -3,9 +3,10 @@
 </p>
 
 <h1 align="center">~/lab</h1>
+
 <a href="README_RU.md">Перевод на русском языке</a>
+
 <p align="center">
-  
   &nbsp;·&nbsp;
   <a href="https://github.com/crwg/crwg.github.io/stargazers"><img src="https://img.shields.io/github/stars/crwg/crwg.github.io?style=flat&color=555" alt="stars"></a>
   <a href="https://github.com/crwg/crwg.github.io/network"><img src="https://img.shields.io/github/forks/crwg/crwg.github.io?style=flat&color=555" alt="forks"></a>
@@ -22,7 +23,8 @@
 ---
 
 ### Simple Gaussian Splat Viewer Preset
-<img src="resources/splat.gif" alt="arch viewer animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
+
+<img src="resources/splat.gif" alt="splat viewer animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
 
 **live:** [crwg.github.io/portfolio/GaussianSplat/](https://crwg.github.io/portfolio/GaussianSplat/)  
 *borrowed from [nazarskalskyi](https://superspl.at/scene/e720a778) — full credit to his original ply.*
@@ -32,6 +34,7 @@
 ## projects
 
 ### Arch viewer
+
 local‑first 3d model viewer. orbit controls, dynamic shadows, measurement tools. all rendering done on‑device.
 
 <p align="center">
@@ -45,6 +48,7 @@ local‑first 3d model viewer. orbit controls, dynamic shadows, measurement tool
 ---
 
 ### Blackjack
+
 pure js card game. ai dealer, smooth flip animations, mobile‑ready layout. configurable rules.
 
 <p align="center">
@@ -58,6 +62,7 @@ pure js card game. ai dealer, smooth flip animations, mobile‑ready layout. con
 ---
 
 ### Matrix rain
+
 canvas‑based digital rain. katakana & latin glyphs, variable speed / density / color. runs smooth at 60fps.
 
 <p align="center">
@@ -71,6 +76,7 @@ canvas‑based digital rain. katakana & latin glyphs, variable speed / density /
 ---
 
 ### yet another Blackjack card
+
 `design playground` – css transitions, layered layout, modern card component.
 
 <p align="center">
@@ -82,11 +88,11 @@ canvas‑based digital rain. katakana & latin glyphs, variable speed / density /
 ---
 
 ### Pixel‑art Blackjack (better rules)
+
 `retro game` – 8‑bit visuals, old‑school ui. classic blackjack with chunky pixels.
 
 <p align="center">
-  
-  <img src="resources/pocpix.jpg" alt="test card screenshot" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <img src="resources/pocpix.jpg" alt="pixelart blackjack screenshot" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
   <sub>live: <a href="https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html">crwg.github.io/.../blackjack-pixelart</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio/games/blackjack-pixelart">/portfolio/games/blackjack-pixelart</a></sub>
 </p>
