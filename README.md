@@ -4,7 +4,7 @@
 
 <h1 align="center">~/lab</h1>
 
-<a href="README_RU.md">Перевод на русском языке</a>
+<a href="README_RU.md">Russian translation</a>
 
 <p align="center">
   &nbsp;·&nbsp;
