@@ -20,7 +20,7 @@
 <img src="resources/splat.gif" alt="анимация splat viewer" width="540" style="border-radius: 8px; opacity:0.9;"/>
 
 **демо:** [crwg.github.io/portfolio/GaussianSplat/](https://crwg.github.io/portfolio/GaussianSplat/)  
-*позаимствовано у [nazarskalskyi](https://superspl.at/scene/e720a778) — вся заслуга за оригинальный ply ему.*
+*Модель позаимствована у [nazarskalskyi](https://superspl.at/scene/e720a778)*
 
 ---
 
