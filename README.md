@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.jpg" alt="CRWG Creations" width="480" style="pointer-events: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
+  <img src="resources/logo.jpg" alt="CRWG Creations" width="480" style="pointer-events: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
 </p>
 
 <h1 align="center">~/lab</h1>
@@ -22,7 +22,7 @@
 ---
 
 ### Simple Gaussian Splat Viewer Preset
-<img src="assets/splat.gif" alt="arch viewer animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
+<img src="resources/splat.gif" alt="arch viewer animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
 
 **live:** [crwg.github.io/portfolio/GaussianSplat/](https://crwg.github.io/portfolio/GaussianSplat/)  
 *borrowed from [nazarskalskyi](https://superspl.at/scene/e720a778) — full credit to his original ply.*
@@ -35,9 +35,9 @@
 local‑first 3d model viewer. orbit controls, dynamic shadows, measurement tools. all rendering done on‑device.
 
 <p align="center">
-  <img src="assets/arch-hero.gif" alt="arch viewer animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <img src="resources/arch-hero.gif" alt="arch viewer animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
   <br/>
-  <img src="assets/arch.jpg" alt="arch viewer still" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <img src="resources/arch.jpg" alt="arch viewer still" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
   <sub>live: <a href="https://crwg.github.io/arch/">crwg.github.io/arch</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/arch">/arch</a></sub>
 </p>
@@ -48,9 +48,9 @@ local‑first 3d model viewer. orbit controls, dynamic shadows, measurement tool
 pure js card game. ai dealer, smooth flip animations, mobile‑ready layout. configurable rules.
 
 <p align="center">
-  <img src="assets/poker-hero.gif" alt="blackjack animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <img src="resources/poker-hero.gif" alt="blackjack animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
   <br/>
-  <img src="assets/poker.jpg" alt="blackjack still" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <img src="resources/poker.jpg" alt="blackjack still" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
   <sub>live: <a href="https://crwg.github.io/poker/">crwg.github.io/poker</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/poker">/poker</a></sub>
 </p>
@@ -61,9 +61,9 @@ pure js card game. ai dealer, smooth flip animations, mobile‑ready layout. con
 canvas‑based digital rain. katakana & latin glyphs, variable speed / density / color. runs smooth at 60fps.
 
 <p align="center">
-  <img src="assets/matrix-hero.gif" alt="matrix rain animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
+  <img src="resources/matrix-hero.gif" alt="matrix rain animation" width="540" style="border-radius: 8px; opacity:0.9;"/>
   <br/>
-  <img src="assets/matrix.jpg" alt="matrix rain still" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <img src="resources/matrix.jpg" alt="matrix rain still" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
   <sub>live: <a href="https://crwg.github.io/matrix/">crwg.github.io/matrix</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/matrix">/matrix</a></sub>
 </p>
@@ -74,7 +74,7 @@ canvas‑based digital rain. katakana & latin glyphs, variable speed / density /
 `design playground` – css transitions, layered layout, modern card component.
 
 <p align="center">
-  <img src="assets/card.jpg" alt="test card screenshot" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <img src="resources/card.jpg" alt="test card screenshot" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
   <sub>live: <a href="https://crwg.github.io/portfolio/design/test-card-1/index.html">crwg.github.io/.../test-card-1</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio/design/test-card-1">/portfolio/design/test-card-1</a></sub>
 </p>
@@ -86,7 +86,7 @@ canvas‑based digital rain. katakana & latin glyphs, variable speed / density /
 
 <p align="center">
   
-  <img src="assets/pocpix.jpg" alt="test card screenshot" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <img src="resources/pocpix.jpg" alt="test card screenshot" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
   <sub>live: <a href="https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html">crwg.github.io/.../blackjack-pixelart</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio/games/blackjack-pixelart">/portfolio/games/blackjack-pixelart</a></sub>
 </p>
