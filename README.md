@@ -11,6 +11,7 @@
   <a href="https://crwg.github.io/poker/"><img src="https://img.shields.io/badge/demo-poker-555?style=flat" alt="poker"></a>
   <a href="https://crwg.github.io/matrix/"><img src="https://img.shields.io/badge/demo-matrix-555?style=flat" alt="matrix"></a>
   <a href="https://crwg.github.io/arch/"><img src="https://img.shields.io/badge/demo-arch_viewer-555?style=flat" alt="arch"></a>
+  <a href="https://crwg.github.io/sound/"><img src="https://img.shields.io/badge/demo-sound-555?style=flat" alt="sound"></a>
 </p>
 
 <p align="center">
@@ -92,6 +93,18 @@ canvas‑based digital rain. katakana & latin glyphs, variable speed / density /
   <img src="resources/pocpix.jpg" alt="pixelart blackjack screenshot" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
   <br/>
   <sub>live: <a href="https://crwg.github.io/portfolio/games/blackjack-pixelart/index.html">crwg.github.io/.../blackjack-pixelart</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/portfolio/games/blackjack-pixelart">/portfolio/games/blackjack-pixelart</a></sub>
+</p>
+
+---
+
+### Acoustic tester
+
+web audio frequency generator. logarithmic scale 20 hz–20 khz, sine wave output, three.js wireframe visualization. hold-to-test with smooth fade-out.
+
+<p align="center">
+  <img src="resources/screen-sound.jpg" alt="acoustic tester screenshot" width="540" style="border-radius: 8px; border: 1px solid #aaa;"/>
+  <br/>
+  <sub>live: <a href="https://crwg.github.io/sound/">crwg.github.io/sound</a> | src: <a href="https://github.com/crwg/crwg.github.io/tree/master/sound">/sound</a></sub>
 </p>
 
 ---
